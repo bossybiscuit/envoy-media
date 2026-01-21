@@ -24,7 +24,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           playsInline
           className="h-full w-full object-cover"
         >
-          <source src="/public/IMG_8366.MOV" type="video/mp4" />
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-envoy-navy/70" />

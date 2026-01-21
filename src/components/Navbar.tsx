@@ -56,7 +56,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               className="font-serif text-2xl font-bold text-white transition-colors hover:text-envoy-blue"
             >
               <img
-                src="/public/nav-logo.png"
+                src="/images/nav-logo.png"
                 alt="Envoy Media"
                 className="h-12 w-auto"
               />

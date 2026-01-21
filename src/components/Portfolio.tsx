@@ -18,16 +18,14 @@ const portfolioItems: PortfolioItem[] = [
     type: "photos",
     title: "Luxury Estate Photography",
     category: "Photography",
-    thumbnail:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&auto=format&fit=crop",
+    thumbnail: "/images/portfolio/luxury-estate.jpg",
   },
   {
     id: 2,
     type: "videos",
     title: "Modern Home Tour",
     category: "Videography",
-    thumbnail:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop",
+    thumbnail: "/images/portfolio/modern-home-tour.jpg",
     isVideo: true,
   },
   {
@@ -35,32 +33,28 @@ const portfolioItems: PortfolioItem[] = [
     type: "3d-tours",
     title: "Virtual Walkthrough",
     category: "3D Tour",
-    thumbnail:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop",
+    thumbnail: "/images/portfolio/virtual-walkthrough.jpg",
   },
   {
     id: 4,
     type: "vacation-rentals",
     title: "Beach House Rental",
     category: "Vacation Rental",
-    thumbnail:
-      "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop",
+    thumbnail: "/images/portfolio/beach-house-rental.jpg",
   },
   {
     id: 5,
     type: "photos",
     title: "Downtown Condo",
     category: "Photography",
-    thumbnail:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop",
+    thumbnail: "/images/portfolio/downtown-condo.jpg",
   },
   {
     id: 6,
     type: "videos",
     title: "Waterfront Property",
     category: "Videography",
-    thumbnail:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop",
+    thumbnail: "/images/portfolio/waterfront-property.jpg",
     isVideo: true,
   },
 ];
