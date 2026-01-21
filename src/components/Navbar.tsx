@@ -90,6 +90,16 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 Testimonials
               </button> */}
 
+              {/* Client Portal Button */}
+              <Button
+                onClick={() => window.location.href = "#"}
+                variant="outline"
+                size="default"
+                className="font-semibold"
+              >
+                Client Portal
+              </Button>
+
               {/* CTA Button */}
               <Button
                 onClick={onOpenModal}
@@ -151,8 +161,19 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               Testimonials
             </button>
 
-            {/* Mobile CTA Button */}
-            <div className="pt-8">
+            {/* Mobile CTA Buttons */}
+            <div className="pt-8 flex flex-col gap-4">
+              <Button
+                onClick={() => {
+                  window.location.href = "#";
+                  setIsMobileMenuOpen(false);
+                }}
+                variant="outline"
+                size="xl"
+                className="font-semibold"
+              >
+                Client Portal
+              </Button>
               <Button
                 onClick={() => {
                   onOpenModal();
