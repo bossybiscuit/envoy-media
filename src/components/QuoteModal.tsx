@@ -521,154 +521,266 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     services
                   </p>
 
-                  {/* Package Cards - Two Row Layout */}
-                  <div className="space-y-5">
+                  {/* Package Cards - Full Width Rows */}
+                  <div className="space-y-4">
                     {/* Essential Package */}
                     <button
-                      onClick={() => handlePackageSelect("Essential")}
+                      onClick={() => handlePackageSelect("Essential Package")}
                       className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
-                        formData.selectedPackage === "Essential"
+                        formData.selectedPackage === "Essential Package"
                           ? "border-envoy-blue bg-envoy-blue/10"
                           : "border-white/10 bg-envoy-navy hover:border-envoy-blue"
                       }`}
                     >
-                      {/* Row 1: Package Name and Select Button */}
-                      <div className="flex items-center justify-between mb-3">
-                        <div>
-                          <h3 className="text-xl font-bold text-envoy-text">
-                            Essential
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-envoy-text mb-1">
+                            Essential Package
                           </h3>
-                          <p className="text-sm text-envoy-muted">
-                            For smaller properties
+                          <p className="text-xs text-envoy-muted mb-3">
+                            Perfect for smaller properties and budget-conscious listings
                           </p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-envoy-text">
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Professional Photography
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Complete property coverage
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Zillow 3D Tour
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-center min-w-[80px]">
-                          {formData.selectedPackage === "Essential" ? (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-envoy-blue">
-                              <Check className="h-5 w-5 text-white" />
+                        <div className="flex items-center justify-center min-w-[60px]">
+                          {formData.selectedPackage === "Essential Package" ? (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
+                              <Check className="h-4 w-4 text-white" />
                             </div>
                           ) : (
-                            <span className="text-sm font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                            <span className="text-xs font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
                               Select
                             </span>
                           )}
-                        </div>
-                      </div>
-
-                      {/* Row 2: Features with Better Spacing */}
-                      <div className="pt-3 border-t border-white/10">
-                        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-envoy-text">
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue" />
-                            Professional Photography
-                          </span>
                         </div>
                       </div>
                     </button>
 
                     {/* Professional Package */}
                     <button
-                      onClick={() => handlePackageSelect("Professional")}
+                      onClick={() => handlePackageSelect("Professional Package")}
                       className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
-                        formData.selectedPackage === "Professional"
+                        formData.selectedPackage === "Professional Package"
                           ? "border-envoy-blue bg-envoy-blue/10"
                           : "border-envoy-blue/20 bg-envoy-blue/5 hover:border-envoy-blue"
                       }`}
                     >
-                      {/* Row 1: Package Name, Badge, and Select Button */}
-                      <div className="flex items-center justify-between mb-3">
-                        <div>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-xl font-bold text-envoy-text">
-                              Professional
+                            <h3 className="text-lg font-bold text-envoy-text">
+                              Professional Package
                             </h3>
-                          </div>
-                          <p className="text-sm text-envoy-muted">
-                            Most popular
                             <span className="rounded-full bg-envoy-blue px-2 py-0.5 text-xs font-semibold text-white">
-                              Recommended
+                              Most Popular
                             </span>
+                          </div>
+                          <p className="text-xs text-envoy-muted mb-3">
+                            Complete marketing suite for standard listings
                           </p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-envoy-text">
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Professional Photography
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Complete property coverage
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Cinematic Walkthrough Video
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Zillow 3D Tour
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-center min-w-[80px]">
-                          {formData.selectedPackage === "Professional" ? (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-envoy-blue">
-                              <Check className="h-5 w-5 text-white" />
+                        <div className="flex items-center justify-center min-w-[60px]">
+                          {formData.selectedPackage === "Professional Package" ? (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
+                              <Check className="h-4 w-4 text-white" />
                             </div>
                           ) : (
-                            <span className="text-sm font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                            <span className="text-xs font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
                               Select
                             </span>
                           )}
-                        </div>
-                      </div>
-
-                      {/* Row 2: Features Grid */}
-                      <div className="pt-3 border-t border-white/10">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-envoy-text">
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue flex-shrink-0" />
-                            Professional Photography
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue flex-shrink-0" />
-                            Property Videography
-                          </span>
                         </div>
                       </div>
                     </button>
 
-                    {/* Premium Package */}
+                    {/* Elite Package */}
                     <button
-                      onClick={() => handlePackageSelect("Premium")}
+                      onClick={() => handlePackageSelect("Elite Package")}
                       className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
-                        formData.selectedPackage === "Premium"
+                        formData.selectedPackage === "Elite Package"
                           ? "border-envoy-blue bg-envoy-blue/10"
                           : "border-white/10 bg-envoy-navy hover:border-envoy-blue"
                       }`}
                     >
-                      {/* Row 1: Package Name and Select Button */}
-                      <div className="flex items-center justify-between mb-3">
-                        <div>
-                          <h3 className="text-xl font-bold text-envoy-text">
-                            Premium
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-envoy-text mb-1">
+                            Elite Package
                           </h3>
-                          <p className="text-sm text-envoy-muted">
-                            Complete package
+                          <p className="text-xs text-envoy-muted mb-3">
+                            Premium marketing for luxury listings
                           </p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-envoy-text">
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Professional Photography
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Complete property coverage
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Cinematic Walkthrough Video
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Agent-Guided Walkthrough
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Matterport 3D Tour
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Twilight/Dusk Photography
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-center min-w-[80px]">
-                          {formData.selectedPackage === "Premium" ? (
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-envoy-blue">
-                              <Check className="h-5 w-5 text-white" />
+                        <div className="flex items-center justify-center min-w-[60px]">
+                          {formData.selectedPackage === "Elite Package" ? (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
+                              <Check className="h-4 w-4 text-white" />
                             </div>
                           ) : (
-                            <span className="text-sm font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                            <span className="text-xs font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
                               Select
                             </span>
                           )}
                         </div>
                       </div>
+                    </button>
 
-                      {/* Row 2: Features Grid */}
-                      <div className="pt-3 border-t border-white/10">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-envoy-text">
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue flex-shrink-0" />
-                            Professional Photography
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue flex-shrink-0" />
-                            Property Videography
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue flex-shrink-0" />
-                            3D Tour (Matterport/Zillow)
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <Check className="h-3.5 w-3.5 text-envoy-blue flex-shrink-0" />
-                            Agent Walkthrough Video
-                          </span>
+                    {/* Vacation Rental Package */}
+                    <button
+                      onClick={() => handlePackageSelect("Vacation Rental Package")}
+                      className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
+                        formData.selectedPackage === "Vacation Rental Package"
+                          ? "border-envoy-blue bg-envoy-blue/10"
+                          : "border-white/10 bg-envoy-navy hover:border-envoy-blue"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-envoy-text mb-1">
+                            Vacation Rental Package
+                          </h3>
+                          <p className="text-xs text-envoy-muted mb-3">
+                            Optimized for short-term rental marketing
+                          </p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-envoy-text">
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Professional Photography
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Property + amenity coverage
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Lifestyle & detail shots
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Zillow 3D Tour
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-center min-w-[60px]">
+                          {formData.selectedPackage === "Vacation Rental Package" ? (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
+                              <Check className="h-4 w-4 text-white" />
+                            </div>
+                          ) : (
+                            <span className="text-xs font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                              Select
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* Commercial Package */}
+                    <button
+                      onClick={() => handlePackageSelect("Commercial Package")}
+                      className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
+                        formData.selectedPackage === "Commercial Package"
+                          ? "border-envoy-blue bg-envoy-blue/10"
+                          : "border-white/10 bg-envoy-navy hover:border-envoy-blue"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-envoy-text mb-1">
+                            Commercial Package
+                          </h3>
+                          <p className="text-xs text-envoy-muted mb-3">
+                            Custom pricing based on property size
+                          </p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-envoy-text mb-2">
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Professional Photography
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Complete building coverage
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Zillow 3D Tour
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
+                              Pricing varies by sq ft
+                            </span>
+                          </div>
+                          <p className="text-xs text-envoy-blue italic">
+                            Contact us for a custom quote
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-center min-w-[60px]">
+                          {formData.selectedPackage === "Commercial Package" ? (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
+                              <Check className="h-4 w-4 text-white" />
+                            </div>
+                          ) : (
+                            <span className="text-xs font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                              Select
+                            </span>
+                          )}
                         </div>
                       </div>
                     </button>
@@ -982,7 +1094,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     {formData.propertySize === "Commercial" && (
                       <Button
                         onClick={handleNext}
-                        disabled={!formData.squareFootage || formData.squareFootage.trim() === ""}
+                        disabled={
+                          !formData.squareFootage ||
+                          formData.squareFootage.trim() === ""
+                        }
                       >
                         Next
                       </Button>
