@@ -35,6 +35,7 @@ interface FormData {
   zipCode: string;
   services: string[];
   propertySize: string;
+  squareFootage: string;
   timeline: string;
   specificDate: string;
   specificTime: string;
@@ -59,6 +60,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     zipCode: "",
     services: [],
     propertySize: "",
+    squareFootage: "",
     timeline: "",
     specificDate: "",
     specificTime: "",
@@ -110,6 +112,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       zipCode: "",
       services: [],
       propertySize: "",
+      squareFootage: "",
       timeline: "",
       specificDate: "",
       specificTime: "",
@@ -206,7 +209,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   const handlePropertySize = (size: string) => {
     setFormData({ ...formData, propertySize: size });
-    setTimeout(handleNext, 300);
+    // Only auto-advance if not Commercial (which requires square footage input)
+    if (size !== "Commercial") {
+      setTimeout(handleNext, 300);
+    }
   };
 
   const handleTimeline = (timeline: string) => {
@@ -302,6 +308,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       zip_code: formData.zipCode,
       services: formData.services.join(", "),
       property_size: formData.propertySize,
+      square_footage: formData.squareFootage || "",
       timeline: formData.timeline,
       specific_date: formData.specificDate || "",
       specific_time: formData.specificTime || "",
@@ -575,12 +582,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             <h3 className="text-xl font-bold text-envoy-text">
                               Professional
                             </h3>
-                            <span className="rounded-full bg-envoy-blue px-2 py-0.5 text-xs font-semibold text-white">
-                              Recommended
-                            </span>
                           </div>
                           <p className="text-sm text-envoy-muted">
                             Most popular
+                            <span className="rounded-full bg-envoy-blue px-2 py-0.5 text-xs font-semibold text-white">
+                              Recommended
+                            </span>
                           </p>
                         </div>
                         <div className="flex items-center justify-center min-w-[80px]">
@@ -684,36 +691,44 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 <div
                   className={`animate-slide-${direction === "forward" ? "in-right" : "in-left"}`}
                 >
-                  <h2 className="mb-8 text-center font-serif text-2xl sm:text-3xl text-envoy-text">
-                    What type of property are you marketing?
+                  <h2 className="mb-6 text-center font-serif text-2xl sm:text-3xl text-envoy-text">
+                    Property Details
                   </h2>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {propertyTypes.map(({ label, icon: Icon }) => (
-                      <button
-                        key={label}
-                        onClick={() => handlePropertyType(label)}
-                        className={`group flex min-h-[100px] items-center gap-3 rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
-                          formData.propertyType === label
-                            ? "border-envoy-blue bg-envoy-blue/10"
-                            : "border-white/10 bg-envoy-navy hover:border-envoy-blue"
-                        }`}
-                      >
-                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-blue" />
-                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-blue">
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  {validationErrors.propertyType && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {validationErrors.propertyType}
-                    </p>
-                  )}
 
-                  {/* Property Address Fields - Shows after type selection */}
-                  {formData.propertyType && (
-                    <div className="mt-6 space-y-4 animate-slide-in-right">
+                  {/* Property Type - Compact */}
+                  <div className="mb-8">
+                    <label className="mb-3 block text-sm font-medium text-envoy-muted">
+                      Property Type
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {propertyTypes.map(({ label, icon: Icon }) => (
+                        <button
+                          key={label}
+                          onClick={() => handlePropertyType(label)}
+                          className={`group flex items-center gap-2 rounded-md border px-4 py-2 text-sm transition-all duration-200 ${
+                            formData.propertyType === label
+                              ? "border-envoy-blue bg-envoy-blue/10 text-envoy-blue"
+                              : "border-white/10 bg-envoy-navy text-envoy-text hover:border-envoy-blue/50"
+                          }`}
+                        >
+                          <Icon className="h-4 w-4 flex-shrink-0" />
+                          <span className="font-medium">{label}</span>
+                        </button>
+                      ))}
+                    </div>
+                    {validationErrors.propertyType && (
+                      <p className="mt-2 text-sm text-red-400">
+                        {validationErrors.propertyType}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Property Address Fields - Main Focus */}
+                  <div className="rounded-lg border border-envoy-blue/30 bg-envoy-blue/5 p-6">
+                    <h3 className="mb-4 text-lg font-semibold text-envoy-text">
+                      Property Address
+                    </h3>
+                    <div className="space-y-4">
                       {/* Street Address */}
                       <div>
                         <label
@@ -830,7 +845,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
 
                   <div className="mt-6">
                     <Button
@@ -910,7 +925,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       <button
                         key={label}
                         onClick={() => handlePropertySize(label)}
-                        className="group flex min-h-[80px] items-center gap-3 rounded-lg border border-white/10 bg-envoy-navy p-6 text-left transition-all duration-200 hover:scale-105 hover:border-envoy-blue hover:shadow-lg hover:shadow-envoy-blue/20"
+                        className={`group flex min-h-[80px] items-center gap-3 rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
+                          formData.propertySize === label
+                            ? "border-envoy-blue bg-envoy-blue/10"
+                            : "border-white/10 bg-envoy-navy hover:border-envoy-blue"
+                        }`}
                       >
                         <Icon className="h-6 w-6 flex-shrink-0 text-envoy-blue" />
                         <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-blue">
@@ -919,7 +938,39 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       </button>
                     ))}
                   </div>
-                  <div className="mt-6">
+
+                  {/* Square Footage Input - Shows when Commercial is selected */}
+                  {formData.propertySize === "Commercial" && (
+                    <div className="mt-6 animate-slide-in-right">
+                      <label
+                        htmlFor="squareFootage"
+                        className="mb-2 block text-sm font-medium text-envoy-text"
+                      >
+                        Approximate Square Feet *
+                      </label>
+                      <input
+                        type="number"
+                        id="squareFootage"
+                        value={formData.squareFootage}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            squareFootage: e.target.value,
+                          })
+                        }
+                        className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
+                        placeholder="e.g., 5000"
+                        min="0"
+                      />
+                      {validationErrors.squareFootage && (
+                        <p className="mt-1 text-sm text-red-400">
+                          {validationErrors.squareFootage}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="mt-6 flex items-center justify-between">
                     <Button
                       onClick={handleBack}
                       variant="ghost"
@@ -928,6 +979,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       <ChevronLeft className="h-4 w-4" />
                       Back
                     </Button>
+                    {formData.propertySize === "Commercial" && (
+                      <Button
+                        onClick={handleNext}
+                        disabled={!formData.squareFootage || formData.squareFootage.trim() === ""}
+                      >
+                        Next
+                      </Button>
+                    )}
                   </div>
                 </div>
               )}
