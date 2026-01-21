@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
 
+// Spiro order page URL
+const SPIRO_ORDER_URL = 'https://portal.spiro.media/order/envoy/envoy-media-new-order-page'
+
 interface NavbarProps {
-  onOpenModal: () => void;
+  // onOpenModal prop no longer needed - linking directly to Spiro
 }
 
-export default function Navbar({ onOpenModal }: NavbarProps) {
+export default function Navbar({}: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -100,14 +103,15 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 Client Portal
               </Button>
 
-              {/* CTA Button */}
-              <Button
-                onClick={onOpenModal}
-                size="default"
-                className="font-semibold"
-              >
-                Book a Shoot
-              </Button>
+              {/* CTA Button - Links to Spiro order page */}
+              <a href={SPIRO_ORDER_URL}>
+                <Button
+                  size="default"
+                  className="font-semibold"
+                >
+                  Book a Shoot
+                </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -174,16 +178,15 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               >
                 Client Portal
               </Button>
-              <Button
-                onClick={() => {
-                  onOpenModal();
-                  setIsMobileMenuOpen(false);
-                }}
-                size="xl"
-                className="font-semibold"
-              >
-                Book a Shoot
-              </Button>
+              <a href={SPIRO_ORDER_URL}>
+                <Button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  size="xl"
+                  className="font-semibold w-full"
+                >
+                  Book a Shoot
+                </Button>
+              </a>
             </div>
           </div>
         </div>

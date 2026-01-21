@@ -538,7 +538,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             Essential Package
                           </h3>
                           <p className="text-xs text-envoy-muted mb-3">
-                            Perfect for smaller properties and budget-conscious listings
+                            Perfect for smaller properties and budget-conscious
+                            listings
                           </p>
                           <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-envoy-text">
                             <span className="flex items-center gap-1.5">
@@ -571,7 +572,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
                     {/* Professional Package */}
                     <button
-                      onClick={() => handlePackageSelect("Professional Package")}
+                      onClick={() =>
+                        handlePackageSelect("Professional Package")
+                      }
                       className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === "Professional Package"
                           ? "border-envoy-blue bg-envoy-blue/10"
@@ -584,7 +587,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             <h3 className="text-lg font-bold text-envoy-text">
                               Professional Package
                             </h3>
-                            <span className="rounded-full bg-envoy-blue px-2 py-0.5 text-xs font-semibold text-white">
+                            <span className="rounded-full bg-envoy-blue px-3 py-1 text-xs font-semibold text-white">
                               Most Popular
                             </span>
                           </div>
@@ -611,7 +614,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           </div>
                         </div>
                         <div className="flex items-center justify-center min-w-[60px]">
-                          {formData.selectedPackage === "Professional Package" ? (
+                          {formData.selectedPackage ===
+                          "Professional Package" ? (
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
                               <Check className="h-4 w-4 text-white" />
                             </div>
@@ -684,7 +688,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
                     {/* Vacation Rental Package */}
                     <button
-                      onClick={() => handlePackageSelect("Vacation Rental Package")}
+                      onClick={() =>
+                        handlePackageSelect("Vacation Rental Package")
+                      }
                       className={`group relative w-full rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === "Vacation Rental Package"
                           ? "border-envoy-blue bg-envoy-blue/10"
@@ -712,14 +718,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
                               Lifestyle & detail shots
                             </span>
-                            <span className="flex items-center gap-1.5">
-                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
-                              Zillow 3D Tour
-                            </span>
                           </div>
                         </div>
                         <div className="flex items-center justify-center min-w-[60px]">
-                          {formData.selectedPackage === "Vacation Rental Package" ? (
+                          {formData.selectedPackage ===
+                          "Vacation Rental Package" ? (
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-envoy-blue">
                               <Check className="h-4 w-4 text-white" />
                             </div>
@@ -762,13 +765,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
                               Zillow 3D Tour
                             </span>
-                            <span className="flex items-center gap-1.5">
-                              <Check className="h-3 w-3 text-envoy-blue flex-shrink-0" />
-                              Pricing varies by sq ft
-                            </span>
                           </div>
                           <p className="text-xs text-envoy-blue italic">
-                            Contact us for a custom quote
+                            Pricing varies by sq ft
                           </p>
                         </div>
                         <div className="flex items-center justify-center min-w-[60px]">
@@ -1397,7 +1396,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             Sent!
                           </>
                         ) : (
-                          "Submit Quote Request"
+                          "Submit for Quote"
                         )}
                       </Button>
                     </div>

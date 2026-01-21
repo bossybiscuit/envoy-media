@@ -1,10 +1,13 @@
 import { Button } from './Button'
 
+// Spiro order page URL
+const SPIRO_ORDER_URL = 'https://portal.spiro.media/order/envoy/envoy-media-new-order-page'
+
 interface FinalCTAProps {
-  onOpenModal: () => void
+  // onOpenModal prop no longer needed - linking directly to Spiro
 }
 
-export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
+export default function FinalCTA({}: FinalCTAProps) {
 
   return (
     <section className="border-t border-white/5 bg-envoy-navy py-20 md:py-24">
@@ -22,9 +25,11 @@ export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
 
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <Button size="xl" onClick={onOpenModal}>
-              Book a Shoot
-            </Button>
+            <a href={SPIRO_ORDER_URL}>
+              <Button size="xl">
+                Book a Shoot
+              </Button>
+            </a>
             <Button size="xl" variant="outline" onClick={() => window.location.href = '#portfolio'}>
               View Our Work
             </Button>

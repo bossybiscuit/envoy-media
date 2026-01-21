@@ -1,11 +1,15 @@
 import { Button } from "./Button";
 import { MapPin } from "lucide-react";
 
+// Spiro order page URL
+const SPIRO_ORDER_URL =
+  "https://portal.spiro.media/order/envoy/envoy-media-new-order-page";
+
 interface HeroProps {
-  onOpenModal: () => void;
+  // onOpenModal prop no longer needed - linking directly to Spiro
 }
 
-export default function Hero({ onOpenModal }: HeroProps) {
+export default function Hero({}: HeroProps) {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -24,7 +28,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           playsInline
           className="h-full w-full object-cover"
         >
-          <source src="/public/IMG_8366.MOV" type="video/mp4" />
+          <source src="/public/videos/hero-video.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-envoy-navy/70" />
@@ -57,13 +61,11 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
             {/* CTAs */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-6">
-              <Button
-                size="xl"
-                onClick={onOpenModal}
-                className="w-full sm:w-auto"
-              >
-                Book a Shoot
-              </Button>
+              <a href={SPIRO_ORDER_URL} className="w-full sm:w-auto">
+                <Button size="xl" className="w-full">
+                  Book a Shoot
+                </Button>
+              </a>
               <Button
                 size="xl"
                 variant="outline"

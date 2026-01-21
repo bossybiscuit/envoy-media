@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -9,24 +9,29 @@ import WhyChooseUs from "./components/WhyChooseUs";
 // import QuoteForm from "./components/QuoteForm";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
-import QuoteModal from "./components/QuoteModal";
+// Quote modal temporarily disabled - linking to Spiro order page
+// import QuoteModal from "./components/QuoteModal";
+
+// Feature flag to enable/disable quote modal
+// const SHOW_QUOTE_MODAL = false;
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
-      <Navbar onOpenModal={() => setIsModalOpen(true)} />
-      <Hero onOpenModal={() => setIsModalOpen(true)} />
+      <Navbar />
+      <Hero />
       <Services />
       <Portfolio />
-      <Packages onOpenModal={() => setIsModalOpen(true)} />
+      <Packages />
       <WhyChooseUs />
       {/* <Testimonials /> */}
       {/* <QuoteForm /> */}
-      <FinalCTA onOpenModal={() => setIsModalOpen(true)} />
+      <FinalCTA />
       <Footer />
-      <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {/* Quote modal temporarily disabled - all CTAs now link to Spiro order page */}
+      {/* {SHOW_QUOTE_MODAL && <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />} */}
     </div>
   );
 }

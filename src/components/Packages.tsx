@@ -1,8 +1,11 @@
 import { Check, Zap, Calendar, Film, Ruler, Plane } from 'lucide-react'
 import { Button } from './Button'
 
+// Spiro order page URL
+const SPIRO_ORDER_URL = 'https://portal.spiro.media/order/envoy/envoy-media-new-order-page'
+
 interface PackagesProps {
-  onOpenModal: () => void
+  // onOpenModal prop no longer needed - linking directly to Spiro
 }
 
 interface Package {
@@ -86,7 +89,7 @@ const addOns: AddOn[] = [
   { icon: Plane, name: 'Drone Photography/Video', comingSoon: true },
 ]
 
-export default function Packages({ onOpenModal }: PackagesProps) {
+export default function Packages({}: PackagesProps) {
 
   return (
     <section id="packages" className="border-t border-white/5 bg-envoy-dark-surface py-20 md:py-24">
@@ -112,21 +115,19 @@ export default function Packages({ onOpenModal }: PackagesProps) {
                   : 'border-envoy-blue/20 bg-envoy-navy'
               }`}
             >
-              {/* Most Popular Badge */}
-              {pkg.mostPopular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="rounded-full bg-envoy-blue px-4 py-1 text-sm font-semibold text-white shadow-lg">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-
               {/* Package Header */}
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-envoy-text">
-                  {pkg.name}
-                </h3>
-                <p className="mt-2 text-sm text-envoy-muted">{pkg.subtitle}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className="text-2xl font-bold text-envoy-text">
+                    {pkg.name}
+                  </h3>
+                  {pkg.mostPopular && (
+                    <span className="rounded-full bg-envoy-blue px-3 py-1 text-xs font-semibold text-white">
+                      Most Popular
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-envoy-muted">{pkg.subtitle}</p>
               </div>
 
               {/* Features List */}
@@ -139,15 +140,16 @@ export default function Packages({ onOpenModal }: PackagesProps) {
                 ))}
               </ul>
 
-              {/* CTA Button */}
-              <Button
-                onClick={onOpenModal}
-                variant={pkg.mostPopular ? 'default' : 'outline'}
-                size="lg"
-                className="w-full"
-              >
-                Book a Shoot
-              </Button>
+              {/* CTA Button - Links to Spiro order page */}
+              <a href={SPIRO_ORDER_URL}>
+                <Button
+                  variant={pkg.mostPopular ? 'default' : 'outline'}
+                  size="lg"
+                  className="w-full"
+                >
+                  Book a Shoot
+                </Button>
+              </a>
             </div>
           ))}
         </div>
@@ -184,15 +186,16 @@ export default function Packages({ onOpenModal }: PackagesProps) {
                 </p>
               )}
 
-              {/* CTA Button */}
-              <Button
-                onClick={onOpenModal}
-                variant="outline"
-                size="lg"
-                className="w-full"
-              >
-                Book a Shoot
-              </Button>
+              {/* CTA Button - Links to Spiro order page */}
+              <a href={SPIRO_ORDER_URL}>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full"
+                >
+                  Book a Shoot
+                </Button>
+              </a>
             </div>
           ))}
         </div>
@@ -239,12 +242,12 @@ export default function Packages({ onOpenModal }: PackagesProps) {
         <div className="mt-16 text-center">
           <p className="text-envoy-muted">
             Need something custom?{' '}
-            <button
-              onClick={onOpenModal}
+            <a
+              href={SPIRO_ORDER_URL}
               className="font-medium text-envoy-blue transition-colors hover:text-envoy-blue-hover"
             >
               Contact us
-            </button>{' '}
+            </a>{' '}
             for tailored packages and pricing.
           </p>
         </div>
