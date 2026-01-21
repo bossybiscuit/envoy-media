@@ -113,7 +113,7 @@ export default function Footer() {
                   onClick={() => scrollToSection("quote")}
                   className="text-envoy-muted transition-colors hover:text-envoy-blue"
                 >
-                  Get a Quote
+                  Book a Shoot
                 </button>
               </li>
             </ul>

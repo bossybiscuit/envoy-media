@@ -23,7 +23,7 @@ export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
             <Button size="xl" onClick={onOpenModal}>
-              Get Your Free Quote
+              Book a Shoot
             </Button>
             <Button size="xl" variant="outline" onClick={() => window.location.href = '#portfolio'}>
               View Our Work

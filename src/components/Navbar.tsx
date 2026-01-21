@@ -96,7 +96,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 size="default"
                 className="font-semibold"
               >
-                Get a Quote
+                Book a Shoot
               </Button>
             </div>
 
@@ -161,7 +161,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 size="xl"
                 className="font-semibold"
               >
-                Get a Quote
+                Book a Shoot
               </Button>
             </div>
           </div>

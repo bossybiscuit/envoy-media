@@ -57,16 +57,16 @@ export default function WhyChooseUs() {
                 className="group relative"
               >
                 {/* Card */}
-                <div className="flex h-full flex-col items-start rounded-lg border border-envoy-blue/20 bg-envoy-navy p-8 transition-all duration-300 hover:border-envoy-blue/40 hover:shadow-lg hover:shadow-envoy-blue/5">
-                  {/* Icon */}
-                  <div className="mb-6 rounded-lg bg-envoy-blue/10 p-3 text-envoy-blue transition-colors duration-300 group-hover:bg-envoy-blue/20">
-                    <Icon className="h-7 w-7" />
+                <div className="flex h-full flex-col rounded-lg border border-envoy-blue/20 bg-envoy-navy p-8 transition-all duration-300 hover:border-envoy-blue/40 hover:shadow-lg hover:shadow-envoy-blue/5">
+                  {/* Icon + Title (inline) */}
+                  <div className="mb-4 flex items-center gap-4">
+                    <div className="inline-flex rounded-lg bg-envoy-blue/10 p-3 text-envoy-blue transition-colors duration-300 group-hover:bg-envoy-blue/20">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-envoy-text">
+                      {reason.title}
+                    </h3>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="mb-3 text-xl font-semibold text-envoy-text">
-                    {reason.title}
-                  </h3>
 
                   {/* Description */}
                   <p className="text-envoy-muted leading-relaxed">

@@ -24,7 +24,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           playsInline
           className="h-full w-full object-cover"
         >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          <source src="/public/IMG_8366.MOV" type="video/mp4" />
         </video>
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-envoy-navy/70" />
@@ -62,7 +62,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                 onClick={onOpenModal}
                 className="w-full sm:w-auto"
               >
-                Get a Quote
+                Book a Shoot
               </Button>
               <Button
                 size="xl"
