@@ -41,6 +41,7 @@ interface FormData {
   timeline: string
   specificDate: string
   specificTime: string
+  deadlineDate: string
   name: string
   email: string
   phone: string
@@ -64,6 +65,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     timeline: '',
     specificDate: '',
     specificTime: '',
+    deadlineDate: '',
     name: '',
     email: '',
     phone: '',
@@ -110,6 +112,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       timeline: '',
       specificDate: '',
       specificTime: '',
+      deadlineDate: '',
       name: '',
       email: '',
       phone: '',
@@ -201,8 +204,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   }
 
   const handleTimeline = (timeline: string) => {
-    setFormData({ ...formData, timeline, specificDate: '', specificTime: '' })
-    if (timeline !== 'Specific Date') {
+    setFormData({ ...formData, timeline, specificDate: '', specificTime: '', deadlineDate: '' })
+    if (timeline !== 'Specific Date' && timeline !== 'Flexible / Not urgent') {
       setTimeout(handleNext, 300)
     }
   }
@@ -290,6 +293,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       timeline: formData.timeline,
       specific_date: formData.specificDate || '',
       specific_time: formData.specificTime || '',
+      deadline_date: formData.deadlineDate || '',
       notes: formData.notes || ''
     }
 
@@ -377,6 +381,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   // Get today's date in YYYY-MM-DD format for min date
   const today = new Date().toISOString().split('T')[0]
+  const threeMonthsFromNow = new Date(new Date().setMonth(new Date().getMonth() + 3)).toISOString().split('T')[0]
 
   if (!isOpen) return null
 
@@ -429,73 +434,131 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     Select a package to get started, or skip to customize your services
                   </p>
 
-                  {/* Package Cards */}
-                  <div className="grid gap-6 md:grid-cols-3">
+                  {/* Package Cards - Horizontal Layout */}
+                  <div className="space-y-4">
                     {/* Essential Package */}
                     <button
                       onClick={() => handlePackageSelect('Essential')}
-                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
+                      className={`group relative flex w-full items-center gap-6 rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === 'Essential'
                           ? 'border-envoy-blue bg-envoy-blue/10'
                           : 'border-white/10 bg-envoy-navy hover:border-envoy-blue'
                       }`}
                     >
-                      <h3 className="mb-2 text-xl font-bold text-envoy-text">Essential</h3>
-                      <p className="mb-4 text-sm text-envoy-muted">Perfect for smaller properties</p>
-                      <ul className="space-y-2 text-sm text-envoy-text">
-                        <li>• Professional Photography</li>
-                      </ul>
+                      {/* Left: Package Name */}
+                      <div className="min-w-[140px]">
+                        <h3 className="text-xl font-bold text-envoy-text">Essential</h3>
+                        <p className="text-sm text-envoy-muted">For smaller properties</p>
+                      </div>
+
+                      {/* Middle: Features */}
+                      <div className="flex-1">
+                        <p className="text-sm text-envoy-text">Professional Photography</p>
+                      </div>
+
+                      {/* Right: Checkmark or Select */}
+                      <div className="flex items-center justify-center min-w-[80px]">
+                        {formData.selectedPackage === 'Essential' ? (
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-envoy-blue">
+                            <Check className="h-5 w-5 text-white" />
+                          </div>
+                        ) : (
+                          <span className="text-sm font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                            Select
+                          </span>
+                        )}
+                      </div>
                     </button>
 
                     {/* Professional Package */}
                     <button
                       onClick={() => handlePackageSelect('Professional')}
-                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
+                      className={`group relative flex w-full items-center gap-6 rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === 'Professional'
                           ? 'border-envoy-blue bg-envoy-blue/10'
                           : 'border-envoy-blue/20 bg-envoy-blue/5 hover:border-envoy-blue'
                       }`}
                     >
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <span className="rounded-full bg-envoy-blue px-3 py-1 text-xs font-semibold text-white">
-                          Recommended
-                        </span>
+                      {/* Left: Package Name + Badge */}
+                      <div className="min-w-[140px]">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-xl font-bold text-envoy-text">Professional</h3>
+                          <span className="rounded-full bg-envoy-blue px-2 py-0.5 text-xs font-semibold text-white">
+                            Recommended
+                          </span>
+                        </div>
+                        <p className="text-sm text-envoy-muted">Most popular</p>
                       </div>
-                      <h3 className="mb-2 text-xl font-bold text-envoy-text">Professional</h3>
-                      <p className="mb-4 text-sm text-envoy-muted">Most popular for residential</p>
-                      <ul className="space-y-2 text-sm text-envoy-text">
-                        <li>• Professional Photography</li>
-                        <li>• Property Videography</li>
-                      </ul>
+
+                      {/* Middle: Features */}
+                      <div className="flex-1">
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-envoy-text">
+                          <span>• Professional Photography</span>
+                          <span>• Property Videography</span>
+                        </div>
+                      </div>
+
+                      {/* Right: Checkmark or Select */}
+                      <div className="flex items-center justify-center min-w-[80px]">
+                        {formData.selectedPackage === 'Professional' ? (
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-envoy-blue">
+                            <Check className="h-5 w-5 text-white" />
+                          </div>
+                        ) : (
+                          <span className="text-sm font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                            Select
+                          </span>
+                        )}
+                      </div>
                     </button>
 
                     {/* Premium Package */}
                     <button
                       onClick={() => handlePackageSelect('Premium')}
-                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
+                      className={`group relative flex w-full items-center gap-6 rounded-lg border p-5 text-left transition-all duration-200 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === 'Premium'
                           ? 'border-envoy-blue bg-envoy-blue/10'
                           : 'border-white/10 bg-envoy-navy hover:border-envoy-blue'
                       }`}
                     >
-                      <h3 className="mb-2 text-xl font-bold text-envoy-text">Premium</h3>
-                      <p className="mb-4 text-sm text-envoy-muted">Complete media package</p>
-                      <ul className="space-y-2 text-sm text-envoy-text">
-                        <li>• Professional Photography</li>
-                        <li>• Property Videography</li>
-                        <li>• 3D Tour (Matterport/Zillow)</li>
-                        <li>• Agent Walkthrough Video</li>
-                      </ul>
+                      {/* Left: Package Name */}
+                      <div className="min-w-[140px]">
+                        <h3 className="text-xl font-bold text-envoy-text">Premium</h3>
+                        <p className="text-sm text-envoy-muted">Complete package</p>
+                      </div>
+
+                      {/* Middle: Features */}
+                      <div className="flex-1">
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-envoy-text">
+                          <span>• Professional Photography</span>
+                          <span>• Property Videography</span>
+                          <span>• 3D Tour (Matterport/Zillow)</span>
+                          <span>• Agent Walkthrough Video</span>
+                        </div>
+                      </div>
+
+                      {/* Right: Checkmark or Select */}
+                      <div className="flex items-center justify-center min-w-[80px]">
+                        {formData.selectedPackage === 'Premium' ? (
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-envoy-blue">
+                            <Check className="h-5 w-5 text-white" />
+                          </div>
+                        ) : (
+                          <span className="text-sm font-medium text-envoy-blue group-hover:text-envoy-blue-hover">
+                            Select
+                          </span>
+                        )}
+                      </div>
                     </button>
                   </div>
 
-                  {/* Skip Button */}
-                  <div className="mt-6 text-center">
+                  {/* Skip Button - Separated at bottom */}
+                  <div className="mt-8 border-t border-white/10 pt-4">
                     <button
                       onClick={handleNext}
                       className="text-sm text-envoy-muted transition-colors hover:text-envoy-blue"
                     >
-                      Skip this step - I'll choose services manually
+                      Skip and select services manually
                     </button>
                   </div>
                 </div>
@@ -775,6 +838,29 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         {validationErrors.specificTime && (
                           <p className="mt-1 text-sm text-red-400">{validationErrors.specificTime}</p>
                         )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Deadline Date Picker - Shows when "Flexible / Not urgent" is selected */}
+                  {formData.timeline === 'Flexible / Not urgent' && (
+                    <div className="mt-6 space-y-4 animate-slide-in-right">
+                      <div>
+                        <label htmlFor="deadlineDate" className="mb-2 block text-sm font-medium text-envoy-text">
+                          Preferred Completion Date (Optional)
+                        </label>
+                        <p className="mb-2 text-xs text-envoy-muted">
+                          Let us know when you'd ideally like this completed
+                        </p>
+                        <input
+                          type="date"
+                          id="deadlineDate"
+                          min={today}
+                          max={threeMonthsFromNow}
+                          value={formData.deadlineDate}
+                          onChange={(e) => setFormData({ ...formData, deadlineDate: e.target.value })}
+                          className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
+                        />
                       </div>
                     </div>
                   )}
