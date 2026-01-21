@@ -107,14 +107,14 @@ export default function Portfolio() {
   const currentItem = filteredItems[currentImageIndex];
 
   return (
-    <section id="portfolio" className="border-t border-white/5 bg-envoy-charcoal py-20 md:py-24">
+    <section id="portfolio" className="border-t border-white/5 bg-envoy-navy py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold text-envoy-text sm:text-5xl md:text-6xl">
             Our Work
           </h2>
-          <p className="mt-4 text-lg text-envoy-text-muted sm:text-xl">
+          <p className="mt-4 text-lg text-envoy-muted sm:text-xl">
             Professional media that showcases Tampa Bay properties at their best
           </p>
         </div>
@@ -127,8 +127,8 @@ export default function Portfolio() {
               onClick={() => setActiveFilter(filter.id as FilterType)}
               className={`rounded-md px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
                 activeFilter === filter.id
-                  ? "bg-envoy-green text-white shadow-lg shadow-envoy-green/20"
-                  : "bg-envoy-charcoal border border-envoy-green/30 text-envoy-text hover:border-envoy-green/50 hover:bg-envoy-green/10"
+                  ? "bg-envoy-blue text-white shadow-lg shadow-envoy-blue/20"
+                  : "bg-envoy-navy border border-envoy-blue/30 text-envoy-text hover:border-envoy-blue/50 hover:bg-envoy-blue/10"
               }`}
             >
               {filter.label}
@@ -142,7 +142,7 @@ export default function Portfolio() {
             <div
               key={item.id}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg bg-envoy-charcoal"
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg bg-envoy-navy"
             >
               {/* Image */}
               <img
@@ -152,9 +152,9 @@ export default function Portfolio() {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-envoy-charcoal via-envoy-charcoal/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-t from-envoy-navy via-envoy-navy/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="mb-1 text-sm font-medium text-envoy-green">
+                  <p className="mb-1 text-sm font-medium text-envoy-blue">
                     {item.category}
                   </p>
                   <h3 className="text-xl font-semibold text-envoy-text">
@@ -166,7 +166,7 @@ export default function Portfolio() {
               {/* Video Icon */}
               {item.isVideo && (
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-envoy-green/90 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-envoy-blue/90 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
                     <Play className="ml-1 h-8 w-8 fill-white text-white" />
                   </div>
                 </div>
@@ -223,7 +223,7 @@ export default function Portfolio() {
           >
             {currentItem.isVideo ? (
               <div className="relative aspect-video w-full">
-                <div className="flex h-full items-center justify-center bg-envoy-charcoal">
+                <div className="flex h-full items-center justify-center bg-envoy-navy">
                   <p className="text-envoy-text">Video player would go here</p>
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function Portfolio() {
 
             {/* Image Info */}
             <div className="mt-4 text-center">
-              <p className="text-sm font-medium text-envoy-green">
+              <p className="text-sm font-medium text-envoy-blue">
                 {currentItem.category}
               </p>
               <h3 className="text-xl font-semibold text-white">

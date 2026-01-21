@@ -386,15 +386,15 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-envoy-charcoal/95 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-envoy-navy/95 backdrop-blur-sm" />
 
       {/* Modal */}
       <div className="relative w-full max-w-2xl animate-fade-in">
-        <div className="rounded-xl border border-envoy-green/30 bg-[#1a1d1c] shadow-2xl">
+        <div className="rounded-xl border border-envoy-blue/30 bg-envoy-dark-surface shadow-2xl">
           {/* Close Button - Positioned Above Everything */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 z-50 text-envoy-text-muted transition-colors hover:text-envoy-text"
+            className="absolute right-4 top-4 z-50 text-envoy-muted transition-colors hover:text-envoy-text"
             aria-label="Close"
           >
             <X className="h-6 w-6" />
@@ -406,11 +406,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             <div>
               <div className="h-1 w-full overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full bg-envoy-green transition-all duration-500 ease-out"
+                  className="h-full bg-envoy-blue transition-all duration-500 ease-out"
                   style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
                 />
               </div>
-              <p className="mt-2 text-center text-sm text-envoy-text-muted">
+              <p className="mt-2 text-center text-sm text-envoy-muted">
                 Step {step} of {TOTAL_STEPS}
               </p>
             </div>
@@ -425,7 +425,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   <h2 className="mb-4 text-center font-serif text-3xl text-envoy-text">
                     Choose a Package
                   </h2>
-                  <p className="mb-8 text-center text-envoy-text-muted">
+                  <p className="mb-8 text-center text-envoy-muted">
                     Select a package to get started, or skip to customize your services
                   </p>
 
@@ -434,14 +434,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     {/* Essential Package */}
                     <button
                       onClick={() => handlePackageSelect('Essential')}
-                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-green/20 ${
+                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === 'Essential'
-                          ? 'border-envoy-green bg-envoy-green/10'
-                          : 'border-white/10 bg-envoy-charcoal hover:border-envoy-green'
+                          ? 'border-envoy-blue bg-envoy-blue/10'
+                          : 'border-white/10 bg-envoy-navy hover:border-envoy-blue'
                       }`}
                     >
                       <h3 className="mb-2 text-xl font-bold text-envoy-text">Essential</h3>
-                      <p className="mb-4 text-sm text-envoy-text-muted">Perfect for smaller properties</p>
+                      <p className="mb-4 text-sm text-envoy-muted">Perfect for smaller properties</p>
                       <ul className="space-y-2 text-sm text-envoy-text">
                         <li>• Professional Photography</li>
                       </ul>
@@ -450,19 +450,19 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     {/* Professional Package */}
                     <button
                       onClick={() => handlePackageSelect('Professional')}
-                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-green/20 ${
+                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === 'Professional'
-                          ? 'border-envoy-green bg-envoy-green/10'
-                          : 'border-envoy-green/20 bg-envoy-green/5 hover:border-envoy-green'
+                          ? 'border-envoy-blue bg-envoy-blue/10'
+                          : 'border-envoy-blue/20 bg-envoy-blue/5 hover:border-envoy-blue'
                       }`}
                     >
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <span className="rounded-full bg-envoy-green px-3 py-1 text-xs font-semibold text-white">
+                        <span className="rounded-full bg-envoy-blue px-3 py-1 text-xs font-semibold text-white">
                           Recommended
                         </span>
                       </div>
                       <h3 className="mb-2 text-xl font-bold text-envoy-text">Professional</h3>
-                      <p className="mb-4 text-sm text-envoy-text-muted">Most popular for residential</p>
+                      <p className="mb-4 text-sm text-envoy-muted">Most popular for residential</p>
                       <ul className="space-y-2 text-sm text-envoy-text">
                         <li>• Professional Photography</li>
                         <li>• Property Videography</li>
@@ -472,14 +472,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     {/* Premium Package */}
                     <button
                       onClick={() => handlePackageSelect('Premium')}
-                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-green/20 ${
+                      className={`group relative flex flex-col rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                         formData.selectedPackage === 'Premium'
-                          ? 'border-envoy-green bg-envoy-green/10'
-                          : 'border-white/10 bg-envoy-charcoal hover:border-envoy-green'
+                          ? 'border-envoy-blue bg-envoy-blue/10'
+                          : 'border-white/10 bg-envoy-navy hover:border-envoy-blue'
                       }`}
                     >
                       <h3 className="mb-2 text-xl font-bold text-envoy-text">Premium</h3>
-                      <p className="mb-4 text-sm text-envoy-text-muted">Complete media package</p>
+                      <p className="mb-4 text-sm text-envoy-muted">Complete media package</p>
                       <ul className="space-y-2 text-sm text-envoy-text">
                         <li>• Professional Photography</li>
                         <li>• Property Videography</li>
@@ -493,7 +493,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   <div className="mt-6 text-center">
                     <button
                       onClick={handleNext}
-                      className="text-sm text-envoy-text-muted transition-colors hover:text-envoy-green"
+                      className="text-sm text-envoy-muted transition-colors hover:text-envoy-blue"
                     >
                       Skip this step - I'll choose services manually
                     </button>
@@ -512,14 +512,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       <button
                         key={label}
                         onClick={() => handlePropertyType(label)}
-                        className={`group flex min-h-[100px] items-center gap-3 rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-green/20 ${
+                        className={`group flex min-h-[100px] items-center gap-3 rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                           formData.propertyType === label
-                            ? 'border-envoy-green bg-envoy-green/10'
-                            : 'border-white/10 bg-envoy-charcoal hover:border-envoy-green'
+                            ? 'border-envoy-blue bg-envoy-blue/10'
+                            : 'border-white/10 bg-envoy-navy hover:border-envoy-blue'
                         }`}
                       >
-                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-green" />
-                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-green">
+                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-blue" />
+                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-blue">
                           {label}
                         </span>
                       </button>
@@ -542,7 +542,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           id="streetAddress"
                           value={formData.streetAddress}
                           onChange={(e) => setFormData({ ...formData, streetAddress: e.target.value })}
-                          className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                          className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                           placeholder="123 Main Street"
                         />
                         {validationErrors.streetAddress && (
@@ -560,7 +560,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           id="city"
                           value={formData.city}
                           onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                          className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                          className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                           placeholder="Tampa"
                         />
                         {validationErrors.city && (
@@ -578,7 +578,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             id="state"
                             value={formData.state}
                             onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                            className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                            className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                           >
                             <option value="">Select</option>
                             {usStates.map((state) => (
@@ -601,7 +601,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                             id="zipCode"
                             value={formData.zipCode}
                             onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
-                            className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                            className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                             placeholder="33601"
                             maxLength={10}
                           />
@@ -638,12 +638,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         onClick={() => handleServiceToggle(label)}
                         className={`flex w-full items-center gap-3 rounded-lg border p-4 transition-all duration-200 ${
                           formData.services.includes(label)
-                            ? 'border-envoy-green bg-envoy-green text-white'
-                            : 'border-white/20 bg-envoy-charcoal text-envoy-text hover:border-envoy-green/50'
+                            ? 'border-envoy-blue bg-envoy-blue text-white'
+                            : 'border-white/20 bg-envoy-navy text-envoy-text hover:border-envoy-blue/50'
                         }`}
                       >
                         <Icon className={`h-6 w-6 flex-shrink-0 ${
-                          formData.services.includes(label) ? 'text-white' : 'text-envoy-green'
+                          formData.services.includes(label) ? 'text-white' : 'text-envoy-blue'
                         }`} />
                         <span className="flex-1 text-left">{label}</span>
                         {formData.services.includes(label) && (
@@ -683,10 +683,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       <button
                         key={label}
                         onClick={() => handlePropertySize(label)}
-                        className="group flex min-h-[80px] items-center gap-3 rounded-lg border border-white/10 bg-envoy-charcoal p-6 text-left transition-all duration-200 hover:scale-105 hover:border-envoy-green hover:shadow-lg hover:shadow-envoy-green/20"
+                        className="group flex min-h-[80px] items-center gap-3 rounded-lg border border-white/10 bg-envoy-navy p-6 text-left transition-all duration-200 hover:scale-105 hover:border-envoy-blue hover:shadow-lg hover:shadow-envoy-blue/20"
                       >
-                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-green" />
-                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-green">
+                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-blue" />
+                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-blue">
                           {label}
                         </span>
                       </button>
@@ -716,14 +716,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       <button
                         key={label}
                         onClick={() => handleTimeline(label)}
-                        className={`group flex min-h-[80px] items-center gap-3 rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-green/20 ${
+                        className={`group flex min-h-[80px] items-center gap-3 rounded-lg border p-6 text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-envoy-blue/20 ${
                           formData.timeline === label
-                            ? 'border-envoy-green bg-envoy-green/10'
-                            : 'border-white/10 bg-envoy-charcoal hover:border-envoy-green'
+                            ? 'border-envoy-blue bg-envoy-blue/10'
+                            : 'border-white/10 bg-envoy-navy hover:border-envoy-blue'
                         }`}
                       >
-                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-green" />
-                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-green">
+                        <Icon className="h-6 w-6 flex-shrink-0 text-envoy-blue" />
+                        <span className="text-lg font-medium text-envoy-text group-hover:text-envoy-blue">
                           {label}
                         </span>
                       </button>
@@ -747,7 +747,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           min={today}
                           value={formData.specificDate}
                           onChange={(e) => setFormData({ ...formData, specificDate: e.target.value })}
-                          className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                          className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                         />
                         {validationErrors.specificDate && (
                           <p className="mt-1 text-sm text-red-400">{validationErrors.specificDate}</p>
@@ -763,7 +763,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           id="specificTime"
                           value={formData.specificTime}
                           onChange={(e) => setFormData({ ...formData, specificTime: e.target.value })}
-                          className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                          className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                         >
                           <option value="">Select a time</option>
                           {timeSlots.map((time) => (
@@ -815,7 +815,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         id="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                        className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                         placeholder="John Doe"
                       />
                       {validationErrors.name && (
@@ -831,7 +831,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         id="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                        className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                         placeholder="john@example.com"
                       />
                       {validationErrors.email && (
@@ -847,7 +847,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         id="phone"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                        className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                         placeholder="(555) 123-4567"
                       />
                       {validationErrors.phone && (
@@ -863,14 +863,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         rows={3}
                         value={formData.notes}
                         onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                        className="w-full rounded-md border border-white/20 bg-envoy-charcoal px-4 py-3 text-envoy-text placeholder-envoy-text-muted transition-colors focus:border-envoy-green focus:outline-none focus:ring-2 focus:ring-envoy-green/20"
+                        className="w-full rounded-md border border-white/20 bg-envoy-navy px-4 py-3 text-envoy-text placeholder-envoy-muted transition-colors focus:border-envoy-blue focus:outline-none focus:ring-2 focus:ring-envoy-blue/20"
                         placeholder="Any specific requirements?"
                       />
                     </div>
                     {/* Success Message */}
                     {submissionStatus === 'success' && (
-                      <div className="rounded-lg bg-envoy-green/10 border border-envoy-green/30 p-4 text-center">
-                        <p className="text-envoy-green font-medium">
+                      <div className="rounded-lg bg-envoy-blue/10 border border-envoy-blue/30 p-4 text-center">
+                        <p className="text-envoy-blue font-medium">
                           Thank you! We'll be in touch within 24 hours.
                         </p>
                       </div>

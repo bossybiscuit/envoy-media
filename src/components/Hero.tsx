@@ -27,7 +27,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           <source src="/public/IMG_8366.MOV" type="video/mp4" />
         </video>
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-envoy-charcoal/70" />
+        <div className="absolute inset-0 bg-envoy-navy/70" />
       </div>
 
       {/* Hero Content */}
@@ -50,9 +50,9 @@ export default function Hero({ onOpenModal }: HeroProps) {
             </h1>
 
             {/* Subheadline */}
-            <p className="mt-6 text-lg text-envoy-text-muted sm:text-xl md:text-xl md:max-w-2xl">
-              High-quality real estate photo, video, and 3D tours for Tampa Bay
-              agents that help listings stand out online.
+            <p className="mt-6 text-lg text-envoy-muted sm:text-xl md:text-xl md:max-w-2xl">
+              High-quality real estate photo, video, Matterport and Zillow 3D
+              tours for Tampa Bay agents that help listings stand out online.
             </p>
 
             {/* CTAs */}
@@ -80,7 +80,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce">
         <svg
-          className="h-6 w-6 text-envoy-text-muted"
+          className="h-6 w-6 text-envoy-muted"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

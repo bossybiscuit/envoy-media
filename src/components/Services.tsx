@@ -1,4 +1,4 @@
-import { Camera, Video, Box, UserCircle, Home } from 'lucide-react'
+import { Camera, Video, Box, UserCircle, Home, Building2 } from 'lucide-react'
 
 const services = [
   {
@@ -26,18 +26,23 @@ const services = [
     title: 'Vacation Rental Media',
     description: 'Specialized photography and video for short-term rentals. Content optimized for Airbnb, VRBO, and vacation rental platforms.',
   },
+  {
+    icon: Building2,
+    title: 'Commercial Listings',
+    description: 'Professional photography and videography for commercial properties, retail spaces, and office buildings that showcase business potential.',
+  },
 ]
 
 export default function Services() {
   return (
-    <section id="services" className="border-t border-white/5 bg-[#1a1d1c] py-20 md:py-24">
+    <section id="services" className="border-t border-white/5 bg-envoy-dark-surface py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-16 text-center">
           <h2 className="text-4xl font-bold text-envoy-text sm:text-5xl md:text-6xl">
             Our Services
           </h2>
-          <p className="mt-4 text-lg text-envoy-text-muted sm:text-xl">
+          <p className="mt-4 text-lg text-envoy-muted sm:text-xl">
             Comprehensive media solutions for Tampa Bay real estate professionals
           </p>
         </div>
@@ -49,20 +54,20 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-lg border border-envoy-green/20 bg-envoy-charcoal p-8 transition-all duration-300 hover:border-envoy-green/50 hover:shadow-lg hover:shadow-envoy-green/10"
+                className="group relative overflow-hidden rounded-lg border border-envoy-blue/20 bg-envoy-navy p-8 transition-all duration-300 hover:border-envoy-blue/50 hover:shadow-lg hover:shadow-envoy-blue/10"
               >
-                {/* Icon */}
-                <div className="mb-6 inline-flex rounded-lg bg-envoy-green/10 p-3 text-envoy-green transition-colors duration-300 group-hover:bg-envoy-green/20">
-                  <Icon className="h-8 w-8" />
+                {/* Icon + Title (inline) */}
+                <div className="mb-4 flex items-center gap-4">
+                  <div className="inline-flex rounded-lg bg-envoy-blue/10 p-3 text-envoy-blue transition-colors duration-300 group-hover:bg-envoy-blue/20">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-envoy-text">
+                    {service.title}
+                  </h3>
                 </div>
 
-                {/* Title */}
-                <h3 className="mb-3 text-xl font-semibold text-envoy-text">
-                  {service.title}
-                </h3>
-
                 {/* Description */}
-                <p className="text-envoy-text-muted leading-relaxed">
+                <p className="text-envoy-muted leading-relaxed">
                   {service.description}
                 </p>
               </div>

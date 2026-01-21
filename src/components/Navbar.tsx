@@ -44,7 +44,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "border-b border-white/10 bg-envoy-charcoal/95 shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md"
+            ? "border-b border-envoy-dark-surface/20 bg-envoy-navy/95 shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md"
             : "bg-transparent"
         }`}
       >
@@ -53,11 +53,11 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             {/* Logo */}
             <button
               onClick={scrollToTop}
-              className="font-serif text-2xl font-bold text-white transition-colors hover:text-envoy-green"
+              className="font-serif text-2xl font-bold text-white transition-colors hover:text-envoy-blue"
             >
               <img
                 src="/public/nav-logo.png"
-                alt="Envoy Media Logo"
+                alt="Envoy Media"
                 className="h-12 w-auto"
               />
             </button>
@@ -66,19 +66,19 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             <div className="hidden items-center space-x-8 md:flex">
               <button
                 onClick={() => scrollToSection("services")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-green"
+                className="font-sans text-envoy-text transition-colors hover:text-envoy-blue"
               >
                 Services
               </button>
               <button
                 onClick={() => scrollToSection("portfolio")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-green"
+                className="font-sans text-envoy-text transition-colors hover:text-envoy-blue"
               >
                 Work
               </button>
               <button
                 onClick={() => scrollToSection("packages")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-green"
+                className="font-sans text-envoy-text transition-colors hover:text-envoy-blue"
               >
                 Packages
               </button>
@@ -103,7 +103,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-envoy-text transition-colors hover:text-envoy-green"
+              className="md:hidden text-envoy-text transition-colors hover:text-envoy-blue"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -120,7 +120,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
         <div className="fixed inset-0 z-40 md:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-envoy-charcoal/95 backdrop-blur-md"
+            className="absolute inset-0 bg-envoy-navy/95 backdrop-blur-md"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
@@ -128,25 +128,25 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <div className="relative flex h-full flex-col items-center justify-center space-y-8 px-6">
             <button
               onClick={() => scrollToSection("services")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-green"
+              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection("portfolio")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-green"
+              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
             >
               Work
             </button>
             <button
               onClick={() => scrollToSection("packages")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-green"
+              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
             >
               Packages
             </button>
             <button
               onClick={() => scrollToSection("testimonials")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-green"
+              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
             >
               Testimonials
             </button>

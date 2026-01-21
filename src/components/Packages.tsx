@@ -59,14 +59,14 @@ const packages: Package[] = [
 export default function Packages({ onOpenModal }: PackagesProps) {
 
   return (
-    <section id="packages" className="border-t border-white/5 bg-[#1a1d1c] py-20 md:py-24">
+    <section id="packages" className="border-t border-white/5 bg-envoy-dark-surface py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-16 text-center">
           <h2 className="text-4xl font-bold text-envoy-text sm:text-5xl md:text-6xl">
             Packages
           </h2>
-          <p className="mt-4 text-lg text-envoy-text-muted sm:text-xl">
+          <p className="mt-4 text-lg text-envoy-muted sm:text-xl">
             Choose the perfect media package for your property
           </p>
         </div>
@@ -78,14 +78,14 @@ export default function Packages({ onOpenModal }: PackagesProps) {
               key={index}
               className={`relative flex flex-col rounded-lg border p-8 ${
                 pkg.recommended
-                  ? 'border-envoy-green bg-envoy-green/5 shadow-xl shadow-envoy-green/10'
-                  : 'border-envoy-green/20 bg-envoy-charcoal'
+                  ? 'border-envoy-blue bg-envoy-blue/5 shadow-xl shadow-envoy-blue/10'
+                  : 'border-envoy-blue/20 bg-envoy-navy'
               }`}
             >
               {/* Recommended Badge */}
               {pkg.recommended && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="rounded-full bg-envoy-green px-4 py-1 text-sm font-semibold text-white shadow-lg">
+                  <span className="rounded-full bg-envoy-blue px-4 py-1 text-sm font-semibold text-white shadow-lg">
                     Recommended
                   </span>
                 </div>
@@ -96,14 +96,14 @@ export default function Packages({ onOpenModal }: PackagesProps) {
                 <h3 className="text-2xl font-bold text-envoy-text">
                   {pkg.name}
                 </h3>
-                <p className="mt-2 text-envoy-text-muted">{pkg.description}</p>
+                <p className="mt-2 text-envoy-muted">{pkg.description}</p>
               </div>
 
               {/* Features List */}
               <ul className="mb-8 flex-grow space-y-3">
                 {pkg.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start gap-3">
-                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-envoy-green" />
+                    <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-envoy-blue" />
                     <span className="text-envoy-text">{feature}</span>
                   </li>
                 ))}
@@ -124,11 +124,11 @@ export default function Packages({ onOpenModal }: PackagesProps) {
 
         {/* Additional Info */}
         <div className="mt-16 text-center">
-          <p className="text-envoy-text-muted">
+          <p className="text-envoy-muted">
             All packages include professional editing and fast turnaround.{' '}
             <button
               onClick={onOpenModal}
-              className="font-medium text-envoy-green transition-colors hover:text-envoy-green-hover"
+              className="font-medium text-envoy-blue transition-colors hover:text-envoy-blue-hover"
             >
               Contact us
             </button>{' '}

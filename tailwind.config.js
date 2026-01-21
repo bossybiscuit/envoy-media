@@ -4,13 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        "envoy-charcoal": "#0F1211",
-        "envoy-green": "#497C4D",
-        "envoy-green-hover": "#5a9160",
-        "envoy-gold": "#497C4D",
-        "envoy-gold-hover": "#5a9160",
-        "envoy-text": "#F5F5F5",
-        "envoy-text-muted": "#9CA3AF",
+        "envoy-navy": "#081421",
+        "envoy-blue": "#6BA9DB",
+        "envoy-blue-hover": "#7fb9e5",
+        "envoy-muted": "#A7B3BF",
+        "envoy-text": "#F1F4F8",
+        "envoy-dark-surface": "#1A2A3A",
       },
       fontFamily: {
         serif: ["DM Serif Display", "serif"],

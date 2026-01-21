@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-envoy-charcoal text-envoy-text font-sans;
+    @apply bg-envoy-navy text-envoy-text font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {

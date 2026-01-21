@@ -28,7 +28,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-envoy-green/20 bg-envoy-charcoal">
+    <footer className="border-t border-envoy-blue/20 bg-envoy-navy">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Main Footer Content */}
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
@@ -37,21 +37,21 @@ export default function Footer() {
             <h3 className="mb-4 text-2xl font-bold text-envoy-text">
               Envoy Media
             </h3>
-            <p className="mb-6 text-envoy-text-muted leading-relaxed">
+            <p className="mb-6 text-envoy-muted leading-relaxed">
               Professional real estate photography and videography serving the
               Tampa Bay area.
             </p>
             <div className="space-y-3">
               <a
                 href="mailto:envoymediaco@gmail.com"
-                className="flex items-center gap-3 text-envoy-text-muted transition-colors hover:text-envoy-green"
+                className="flex items-center gap-3 text-envoy-muted transition-colors hover:text-envoy-blue"
               >
                 <Mail className="h-5 w-5" />
                 <span>envoymediaco@gmail.com</span>
               </a>
               <a
                 href="tel:+18135551234"
-                className="flex items-center gap-3 text-envoy-text-muted transition-colors hover:text-envoy-green"
+                className="flex items-center gap-3 text-envoy-muted transition-colors hover:text-envoy-blue"
               >
                 <Phone className="h-5 w-5" />
                 <span>(813)-753-8172</span>
@@ -69,7 +69,7 @@ export default function Footer() {
                 <li key={index}>
                   <button
                     onClick={() => scrollToSection("services")}
-                    className="text-envoy-text-muted transition-colors hover:text-envoy-green"
+                    className="text-envoy-muted transition-colors hover:text-envoy-blue"
                   >
                     {service}
                   </button>
@@ -87,7 +87,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="text-envoy-text-muted transition-colors hover:text-envoy-green"
+                  className="text-envoy-muted transition-colors hover:text-envoy-blue"
                 >
                   Services
                 </button>
@@ -95,7 +95,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("portfolio")}
-                  className="text-envoy-text-muted transition-colors hover:text-envoy-green"
+                  className="text-envoy-muted transition-colors hover:text-envoy-blue"
                 >
                   Portfolio
                 </button>
@@ -103,7 +103,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("packages")}
-                  className="text-envoy-text-muted transition-colors hover:text-envoy-green"
+                  className="text-envoy-muted transition-colors hover:text-envoy-blue"
                 >
                   Packages
                 </button>
@@ -111,7 +111,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("quote")}
-                  className="text-envoy-text-muted transition-colors hover:text-envoy-green"
+                  className="text-envoy-muted transition-colors hover:text-envoy-blue"
                 >
                   Get a Quote
                 </button>
@@ -122,12 +122,12 @@ export default function Footer() {
           {/* Service Areas */}
           <div>
             <h4 className="mb-4 flex items-center gap-2 text-lg font-semibold text-envoy-text">
-              <MapPin className="h-5 w-5 text-envoy-green" />
+              <MapPin className="h-5 w-5 text-envoy-blue" />
               Service Areas
             </h4>
             <ul className="space-y-2">
               {serviceAreas.map((area, index) => (
-                <li key={index} className="text-envoy-text-muted">
+                <li key={index} className="text-envoy-muted">
                   {area}
                 </li>
               ))}
@@ -136,14 +136,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-envoy-green/10 py-8">
-          <div className="flex flex-col items-center justify-between gap-4 text-sm text-envoy-text-muted sm:flex-row">
+        <div className="border-t border-envoy-blue/10 py-8">
+          <div className="flex flex-col items-center justify-between gap-4 text-sm text-envoy-muted sm:flex-row">
             <p>&copy; {currentYear} Envoy Media. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="transition-colors hover:text-envoy-green">
+              <a href="#" className="transition-colors hover:text-envoy-blue">
                 Privacy Policy
               </a>
-              <a href="#" className="transition-colors hover:text-envoy-green">
+              <a href="#" className="transition-colors hover:text-envoy-blue">
                 Terms of Service
               </a>
             </div>

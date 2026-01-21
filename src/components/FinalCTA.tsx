@@ -7,7 +7,7 @@ interface FinalCTAProps {
 export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
 
   return (
-    <section className="border-t border-white/5 bg-envoy-charcoal py-20 md:py-24">
+    <section className="border-t border-white/5 bg-envoy-navy py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
           {/* Heading */}
@@ -16,7 +16,7 @@ export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
           </h2>
 
           {/* Subheading */}
-          <p className="mt-6 text-lg text-envoy-text-muted sm:text-xl">
+          <p className="mt-6 text-lg text-envoy-muted sm:text-xl">
             Let's create stunning visuals that help your listing stand out and attract qualified buyers.
           </p>
 
@@ -31,17 +31,17 @@ export default function FinalCTA({ onOpenModal }: FinalCTAProps) {
           </div>
 
           {/* Trust Signals */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-envoy-text-muted">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-envoy-muted">
             <div className="flex items-center gap-2">
-              <span className="text-envoy-green">✓</span>
+              <span className="text-envoy-blue">✓</span>
               <span>Matterport Certified</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-envoy-green">✓</span>
+              <span className="text-envoy-blue">✓</span>
               <span>Zillow 3D Trained</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-envoy-green">✓</span>
+              <span className="text-envoy-blue">✓</span>
               <span>Fully Insured</span>
             </div>
           </div>
