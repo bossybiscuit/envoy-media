@@ -1,4 +1,4 @@
-import { Check, Zap, Calendar, Film, Ruler, Plane } from 'lucide-react'
+import { Check, Zap, Calendar, Ruler } from 'lucide-react'
 import { Button } from './Button'
 
 // Spiro order page URL
@@ -84,9 +84,7 @@ const specialtyPackages: Package[] = [
 const addOns: AddOn[] = [
   { icon: Zap, name: 'Express Delivery (24-hour turnaround)' },
   { icon: Calendar, name: 'Priority Scheduling' },
-  { icon: Film, name: 'Social Media Video Cut (30-60 sec)' },
   { icon: Ruler, name: 'Floor Plans' },
-  { icon: Plane, name: 'Drone Photography/Video', comingSoon: true },
 ]
 
 export default function Packages({}: PackagesProps) {
@@ -115,19 +113,21 @@ export default function Packages({}: PackagesProps) {
                   : 'border-envoy-blue/20 bg-envoy-navy'
               }`}
             >
+              {/* Most Popular Badge - positioned on top edge */}
+              {pkg.mostPopular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="rounded-full bg-envoy-blue px-3 py-1 text-xs font-semibold text-white whitespace-nowrap">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+
               {/* Package Header */}
               <div className="mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-2xl font-bold text-envoy-text">
-                    {pkg.name}
-                  </h3>
-                  {pkg.mostPopular && (
-                    <span className="rounded-full bg-envoy-blue px-3 py-1 text-xs font-semibold text-white">
-                      Most Popular
-                    </span>
-                  )}
-                </div>
-                <p className="text-sm text-envoy-muted">{pkg.subtitle}</p>
+                <h3 className="text-2xl font-bold text-envoy-text">
+                  {pkg.name}
+                </h3>
+                <p className="mt-2 text-sm text-envoy-muted">{pkg.subtitle}</p>
               </div>
 
               {/* Features List */}
