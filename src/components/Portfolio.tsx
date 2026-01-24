@@ -16,46 +16,9 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     type: "photos",
-    title: "Luxury Estate Photography",
+    title: "Connerton Home",
     category: "Photography",
-    thumbnail: "/images/portfolio/luxury-estate.jpg",
-  },
-  {
-    id: 2,
-    type: "videos",
-    title: "Modern Home Tour",
-    category: "Videography",
-    thumbnail: "/images/portfolio/modern-home-tour.jpg",
-    isVideo: true,
-  },
-  {
-    id: 3,
-    type: "3d-tours",
-    title: "Virtual Walkthrough",
-    category: "3D Tour",
-    thumbnail: "/images/portfolio/virtual-walkthrough.jpg",
-  },
-  {
-    id: 4,
-    type: "vacation-rentals",
-    title: "Beach House Rental",
-    category: "Vacation Rental",
-    thumbnail: "/images/portfolio/beach-house-rental.jpg",
-  },
-  {
-    id: 5,
-    type: "photos",
-    title: "Downtown Condo",
-    category: "Photography",
-    thumbnail: "/images/portfolio/downtown-condo.jpg",
-  },
-  {
-    id: 6,
-    type: "videos",
-    title: "Waterfront Property",
-    category: "Videography",
-    thumbnail: "/images/portfolio/waterfront-property.jpg",
-    isVideo: true,
+    thumbnail: "/images/portfolio/connerton-1.jpg",
   },
 ];
 
