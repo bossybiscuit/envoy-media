@@ -104,7 +104,7 @@ export default function Navbar({}: NavbarProps) {
               </Button>
 
               {/* CTA Button - Links to Spiro order page */}
-              <a href={SPIRO_ORDER_URL}>
+              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
                 <Button
                   size="default"
                   className="font-semibold"
@@ -178,7 +178,7 @@ export default function Navbar({}: NavbarProps) {
               >
                 Client Portal
               </Button>
-              <a href={SPIRO_ORDER_URL}>
+              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
                 <Button
                   onClick={() => setIsMobileMenuOpen(false)}
                   size="xl"

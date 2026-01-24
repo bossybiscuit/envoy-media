@@ -61,7 +61,7 @@ export default function Hero({}: HeroProps) {
 
             {/* CTAs */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-6">
-              <a href={SPIRO_ORDER_URL} className="w-full sm:w-auto">
+              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                 <Button size="xl" className="w-full">
                   Book a Shoot
                 </Button>

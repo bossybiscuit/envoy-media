@@ -25,7 +25,7 @@ export default function FinalCTA({}: FinalCTAProps) {
 
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <a href={SPIRO_ORDER_URL}>
+            <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
               <Button size="xl">
                 Book a Shoot
               </Button>

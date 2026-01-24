@@ -1,96 +1,99 @@
-import { Check, Zap, Calendar, Ruler } from 'lucide-react'
-import { Button } from './Button'
+import { Check, Zap, Calendar, Ruler } from "lucide-react";
+import { Button } from "./Button";
 
 // Spiro order page URL
-const SPIRO_ORDER_URL = 'https://portal.spiro.media/order/envoy/envoy-media-new-order-page'
+const SPIRO_ORDER_URL =
+  "https://portal.spiro.media/order/envoy/envoy-media-new-order-page";
 
 interface PackagesProps {
   // onOpenModal prop no longer needed - linking directly to Spiro
 }
 
 interface Package {
-  name: string
-  subtitle: string
-  features: string[]
-  mostPopular?: boolean
-  note?: string
+  name: string;
+  subtitle: string;
+  features: string[];
+  mostPopular?: boolean;
+  note?: string;
 }
 
 interface AddOn {
-  icon: any
-  name: string
-  comingSoon?: boolean
+  icon: any;
+  name: string;
+  comingSoon?: boolean;
 }
 
 const mainPackages: Package[] = [
   {
-    name: 'Essential Package',
-    subtitle: 'Perfect for smaller properties and budget-conscious listings',
+    name: "Essential Package",
+    subtitle: "Perfect for smaller properties and budget-conscious listings",
     features: [
-      'Professional Photography (interior & exterior)',
-      'Complete property coverage',
-      'Zillow 3D Tour',
+      "Professional Photography (interior & exterior)",
+      "Complete property coverage",
+      "Zillow 3D Tour",
     ],
   },
   {
-    name: 'Professional Package',
-    subtitle: 'Complete marketing suite for standard listings',
+    name: "Professional Package",
+    subtitle: "Complete marketing suite for standard listings",
     features: [
-      'Professional Photography (interior & exterior)',
-      'Complete property coverage',
-      'Cinematic Property Walkthrough Video',
-      'Zillow 3D Tour',
+      "Professional Photography (interior & exterior)",
+      "Complete property coverage",
+      "Cinematic Property Walkthrough Video",
+      "Zillow 3D Tour",
     ],
     mostPopular: true,
   },
   {
-    name: 'Elite Package',
-    subtitle: 'Premium marketing for luxury listings',
+    name: "Elite Package",
+    subtitle: "Premium marketing for luxury listings",
     features: [
-      'Professional Photography (interior & exterior)',
-      'Complete property coverage',
-      'Cinematic Property Walkthrough Video',
-      'Agent-Guided Walkthrough Video',
-      'Matterport 3D Tour',
-      'Twilight/Dusk Photography (weather permitting)',
+      "Professional Photography (interior & exterior)",
+      "Complete property coverage",
+      "Cinematic Property Walkthrough Video",
+      "Agent-Guided Walkthrough Video",
+      "Matterport 3D Tour",
+      "Twilight/Dusk Photography (weather permitting)",
     ],
   },
-]
+];
 
 const specialtyPackages: Package[] = [
   {
-    name: 'Vacation Rental Package',
-    subtitle: 'Optimized for short-term rental marketing',
+    name: "Vacation Rental Package",
+    subtitle: "Optimized for short-term rental marketing",
     features: [
-      'Professional Photography (interior & exterior)',
-      'Complete property + amenity coverage',
-      'Lifestyle & detail shots',
-      'Zillow 3D Tour',
+      "Professional Photography (interior & exterior)",
+      "Complete property + amenity coverage",
+      "Lifestyle & detail shots",
+      "Zillow 3D Tour",
     ],
   },
   {
-    name: 'Commercial Package',
-    subtitle: 'Custom pricing based on property size',
+    name: "Commercial Package",
+    subtitle: "Custom pricing based on property size",
     features: [
-      'Professional Photography (interior & exterior)',
-      'Complete building coverage',
-      'Zillow 3D Tour',
-      'Pricing varies by square footage',
+      "Professional Photography (interior & exterior)",
+      "Complete building coverage",
+      "Zillow 3D Tour",
+      "Pricing varies by square footage",
     ],
-    note: 'Contact us for a custom quote',
+    note: "Contact us for a custom quote",
   },
-]
+];
 
 const addOns: AddOn[] = [
-  { icon: Zap, name: 'Express Delivery (24-hour turnaround)' },
-  { icon: Calendar, name: 'Priority Scheduling' },
-  { icon: Ruler, name: 'Floor Plans' },
-]
+  { icon: Zap, name: "Express Delivery (24-hour turnaround)" },
+  { icon: Calendar, name: "Priority Scheduling" },
+  { icon: Ruler, name: "Floor Plans" },
+];
 
 export default function Packages({}: PackagesProps) {
-
   return (
-    <section id="packages" className="border-t border-white/5 bg-envoy-dark-surface py-20 md:py-24">
+    <section
+      id="packages"
+      className="border-t border-white/5 bg-envoy-dark-surface py-20 md:py-24"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-16 text-center">
@@ -109,8 +112,8 @@ export default function Packages({}: PackagesProps) {
               key={index}
               className={`relative flex flex-col rounded-lg border p-8 ${
                 pkg.mostPopular
-                  ? 'border-envoy-blue bg-envoy-blue/5 shadow-xl shadow-envoy-blue/10'
-                  : 'border-envoy-blue/20 bg-envoy-navy'
+                  ? "border-envoy-blue bg-envoy-blue/5 shadow-xl shadow-envoy-blue/10"
+                  : "border-envoy-blue/20 bg-envoy-navy"
               }`}
             >
               {/* Most Popular Badge - positioned on top edge */}
@@ -141,9 +144,9 @@ export default function Packages({}: PackagesProps) {
               </ul>
 
               {/* CTA Button - Links to Spiro order page */}
-              <a href={SPIRO_ORDER_URL}>
+              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
                 <Button
-                  variant={pkg.mostPopular ? 'default' : 'outline'}
+                  variant={pkg.mostPopular ? "default" : "outline"}
                   size="lg"
                   className="w-full"
                 >
@@ -187,12 +190,8 @@ export default function Packages({}: PackagesProps) {
               )}
 
               {/* CTA Button - Links to Spiro order page */}
-              <a href={SPIRO_ORDER_URL}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full"
-                >
+              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="lg" className="w-full">
                   Book a Shoot
                 </Button>
               </a>
@@ -213,7 +212,7 @@ export default function Packages({}: PackagesProps) {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {addOns.map((addOn, index) => {
-              const Icon = addOn.icon
+              const Icon = addOn.icon;
               return (
                 <div
                   key={index}
@@ -223,9 +222,7 @@ export default function Packages({}: PackagesProps) {
                     <Icon className="h-6 w-6 text-envoy-blue" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-envoy-text font-medium">
-                      {addOn.name}
-                    </p>
+                    <p className="text-envoy-text font-medium">{addOn.name}</p>
                     {addOn.comingSoon && (
                       <span className="text-xs text-envoy-muted italic">
                         Coming Soon
@@ -233,7 +230,7 @@ export default function Packages({}: PackagesProps) {
                     )}
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -241,17 +238,17 @@ export default function Packages({}: PackagesProps) {
         {/* Additional Info */}
         <div className="mt-16 text-center">
           <p className="text-envoy-muted">
-            Need something custom?{' '}
+            Need something custom?{" "}
             <a
               href={SPIRO_ORDER_URL}
               className="font-medium text-envoy-blue transition-colors hover:text-envoy-blue-hover"
             >
               Contact us
-            </a>{' '}
+            </a>{" "}
             for tailored packages and pricing.
           </p>
         </div>
       </div>
     </section>
-  )
+  );
 }
