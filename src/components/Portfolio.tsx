@@ -49,7 +49,7 @@ const projects: Project[] = [
     category: "Property Tour",
     thumbnail: "/images/portfolio/bimini-gallery/DSC00269.jpg",
     type: "video",
-    videoUrl: "/videos/Jalen-Bimini-horizontal.mp4",
+    videoUrl: "https://www.youtube.com/embed/P5g6ovGEVbc",
   },
   {
     id: "connerton",
@@ -325,14 +325,13 @@ export default function Portfolio() {
             className="relative w-full max-w-[90vw] max-h-[90vh] aspect-video"
             onClick={(e) => e.stopPropagation()}
           >
-            <video
-              src={activeVideoUrl}
-              controls
-              playsInline
+            <iframe
+              src={`${activeVideoUrl}?autoplay=1&rel=0`}
+              title="Property Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
               className="w-full h-full rounded-lg shadow-2xl"
-            >
-              Your browser does not support the video tag.
-            </video>
+            />
           </div>
 
           {/* Keyboard hint */}
