@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Play, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import {
   FloatingShapes,
   IconWatermark,
@@ -7,66 +7,78 @@ import {
   useScrollAnimation,
 } from "./Decorative";
 
-type FilterType = "all" | "photos" | "videos" | "vacation-rentals" | "3d-tours";
-
-interface PortfolioItem {
-  id: number;
-  type: FilterType;
-  title: string;
-  category: string;
-  thumbnail: string;
-  isVideo?: boolean;
-}
-
-const portfolioItems: PortfolioItem[] = [
-  {
-    id: 1,
-    type: "photos",
-    title: "Connerton Home",
-    category: "Photography",
-    thumbnail: "/images/portfolio/connerton-1.jpg",
-  },
-];
-
-const filters = [
-  { id: "all", label: "All Work" },
-  { id: "photos", label: "Photos" },
-  { id: "videos", label: "Videos" },
-  { id: "vacation-rentals", label: "Vacation Rentals" },
-  { id: "3d-tours", label: "3D Tours" },
+// Bimini Bay Resort Gallery Images
+const biminiGallery = [
+  { src: "/images/portfolio/bimini-gallery/DSC00234.jpg", alt: "Bimini Bay Resort 1" },
+  { src: "/images/portfolio/bimini-gallery/DSC00239.jpg", alt: "Bimini Bay Resort 2" },
+  { src: "/images/portfolio/bimini-gallery/DSC00244.jpg", alt: "Bimini Bay Resort 3" },
+  { src: "/images/portfolio/bimini-gallery/DSC00249.jpg", alt: "Bimini Bay Resort 4" },
+  { src: "/images/portfolio/bimini-gallery/DSC00254.jpg", alt: "Bimini Bay Resort 5" },
+  { src: "/images/portfolio/bimini-gallery/DSC00264.jpg", alt: "Bimini Bay Resort 6" },
+  { src: "/images/portfolio/bimini-gallery/DSC00269.jpg", alt: "Bimini Bay Resort 7" },
+  { src: "/images/portfolio/bimini-gallery/DSC00278.jpg", alt: "Bimini Bay Resort 8" },
+  { src: "/images/portfolio/bimini-gallery/DSC00279.jpg", alt: "Bimini Bay Resort 9" },
+  { src: "/images/portfolio/bimini-gallery/DSC00284.jpg", alt: "Bimini Bay Resort 10" },
+  { src: "/images/portfolio/bimini-gallery/DSC00292.jpg", alt: "Bimini Bay Resort 11" },
+  { src: "/images/portfolio/bimini-gallery/DSC00294.jpg", alt: "Bimini Bay Resort 12" },
+  { src: "/images/portfolio/bimini-gallery/DSC00304.jpg", alt: "Bimini Bay Resort 13" },
 ];
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { ref, isVisible } = useScrollAnimation();
-
-  const filteredItems =
-    activeFilter === "all"
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.type === activeFilter);
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
 
-  const closeLightbox = () => setLightboxOpen(false);
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false);
+  }, []);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? filteredItems.length - 1 : prev - 1
+      prev === 0 ? biminiGallery.length - 1 : prev - 1
     );
-  };
+  }, []);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentImageIndex((prev) =>
-      prev === filteredItems.length - 1 ? 0 : prev + 1
+      prev === biminiGallery.length - 1 ? 0 : prev + 1
     );
-  };
+  }, []);
 
-  const currentItem = filteredItems[currentImageIndex];
+  // Keyboard navigation
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "Escape":
+          closeLightbox();
+          break;
+        case "ArrowLeft":
+          goToPrevious();
+          break;
+        case "ArrowRight":
+          goToNext();
+          break;
+      }
+    };
+
+    // Prevent body scroll when lightbox is open
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [lightboxOpen, closeLightbox, goToPrevious, goToNext]);
+
+  const currentImage = biminiGallery[currentImageIndex];
 
   return (
     <section
@@ -92,130 +104,111 @@ export default function Portfolio() {
 
         <SectionDivider />
 
-        {/* Filter Tabs */}
-        <div className="mt-8 mb-12 flex flex-wrap justify-center gap-3">
-          {filters.map((filter) => (
-            <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id as FilterType)}
-              className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
-                activeFilter === filter.id
-                  ? "bg-gradient-to-r from-blue-coastal to-blue-coastal-hover text-white shadow-lg shadow-blue-coastal/20"
-                  : "border border-surface-dark bg-navy-deep text-gray-muted hover:border-blue-coastal/40 hover:text-text-light"
-              }`}
-            >
-              {filter.label}
-            </button>
-          ))}
+        {/* Project Title */}
+        <div className="mt-8 mb-8 text-center">
+          <h3 className="text-2xl font-semibold text-text-light lg:text-3xl">
+            Bimini Bay Resort
+          </h3>
+          <p className="mt-2 text-gray-muted">Vacation Rental Photography</p>
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredItems.map((item, index) => (
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {biminiGallery.map((image, index) => (
             <div
-              key={item.id}
+              key={index}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-surface-dark bg-navy-deep card-glow transition-all duration-300 hover:scale-[1.02]"
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-surface-dark bg-navy-deep card-glow transition-all duration-300 hover:scale-[1.03]"
             >
               <img
-                src={item.thumbnail}
-                alt={item.title}
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="mb-1 text-sm font-medium text-blue-coastal">
-                    {item.category}
-                  </p>
-                  <h3 className="text-xl font-semibold text-text-light">
-                    {item.title}
-                  </h3>
+              {/* Blue overlay on hover */}
+              <div className="absolute inset-0 bg-blue-coastal/0 transition-all duration-300 group-hover:bg-blue-coastal/20" />
+
+              {/* View indicator */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="flex items-center gap-2 rounded-full bg-navy-deep/80 px-4 py-2 backdrop-blur-sm">
+                  <Eye className="h-5 w-5 text-blue-coastal" />
+                  <span className="text-sm font-medium text-text-light">View</span>
                 </div>
               </div>
-
-              {/* Blue overlay tint on hover */}
-              <div className="absolute inset-0 bg-blue-coastal/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-              {/* Video Icon */}
-              {item.isVideo && (
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-coastal/90 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 shadow-lg shadow-blue-coastal/30">
-                    <Play className="ml-1 h-8 w-8 fill-white text-white" />
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>
+
+        {/* Image count */}
+        <p className="mt-6 text-center text-sm text-gray-muted">
+          {biminiGallery.length} photos &bull; Click to view gallery
+        </p>
       </div>
 
       {/* Lightbox */}
-      {lightboxOpen && currentItem && (
+      {lightboxOpen && currentImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-navy-deep/95 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-navy-deep/95 backdrop-blur-md"
           onClick={closeLightbox}
         >
+          {/* Close button */}
           <button
             onClick={closeLightbox}
-            className="absolute right-4 top-4 z-10 rounded-full bg-surface-dark/80 p-2 text-white backdrop-blur-sm transition-colors hover:bg-blue-coastal/20"
+            className="absolute right-4 top-4 z-20 rounded-full bg-blue-coastal p-3 text-white shadow-lg shadow-blue-coastal/30 transition-all duration-300 hover:scale-110 hover:bg-blue-coastal-hover md:right-6 md:top-6"
           >
             <X className="h-6 w-6" />
           </button>
 
-          {filteredItems.length > 1 && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPrevious();
-                }}
-                className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-surface-dark/80 p-3 text-white backdrop-blur-sm transition-colors hover:bg-blue-coastal/20"
-              >
-                <ChevronLeft className="h-8 w-8" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNext();
-                }}
-                className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-surface-dark/80 p-3 text-white backdrop-blur-sm transition-colors hover:bg-blue-coastal/20"
-              >
-                <ChevronRight className="h-8 w-8" />
-              </button>
-            </>
-          )}
+          {/* Previous button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
+            className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-blue-coastal p-3 text-white shadow-lg shadow-blue-coastal/30 transition-all duration-300 hover:scale-110 hover:bg-blue-coastal-hover md:left-6 md:p-4"
+          >
+            <ChevronLeft className="h-6 w-6 md:h-8 md:w-8" />
+          </button>
 
+          {/* Next button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+            className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-blue-coastal p-3 text-white shadow-lg shadow-blue-coastal/30 transition-all duration-300 hover:scale-110 hover:bg-blue-coastal-hover md:right-6 md:p-4"
+          >
+            <ChevronRight className="h-6 w-6 md:h-8 md:w-8" />
+          </button>
+
+          {/* Image container */}
           <div
-            className="relative max-h-[90vh] max-w-6xl"
+            className="relative flex flex-col items-center px-16 md:px-24"
             onClick={(e) => e.stopPropagation()}
           >
-            {currentItem.isVideo ? (
-              <div className="relative aspect-video w-full">
-                <div className="flex h-full items-center justify-center rounded-lg bg-surface-dark">
-                  <p className="text-gray-muted">Video player would go here</p>
-                </div>
-              </div>
-            ) : (
-              <img
-                src={currentItem.thumbnail}
-                alt={currentItem.title}
-                className="max-h-[90vh] w-full rounded-lg object-contain"
-              />
-            )}
+            <img
+              src={currentImage.src}
+              alt={currentImage.alt}
+              className="max-h-[80vh] max-w-[90vw] rounded-lg object-contain shadow-2xl transition-opacity duration-300"
+            />
 
-            <div className="mt-4 text-center">
-              <p className="text-sm font-medium text-blue-coastal">
-                {currentItem.category}
-              </p>
-              <h3 className="text-xl font-semibold text-text-light">
-                {currentItem.title}
-              </h3>
-              <p className="mt-2 text-sm text-gray-muted/60">
-                {currentImageIndex + 1} / {filteredItems.length}
-              </p>
+            {/* Counter */}
+            <div className="mt-6 flex items-center gap-4">
+              <span className="text-lg font-medium text-text-light">
+                {currentImageIndex + 1}
+              </span>
+              <span className="text-gray-muted">/</span>
+              <span className="text-lg text-gray-muted">
+                {biminiGallery.length}
+              </span>
             </div>
+
+            {/* Keyboard hint */}
+            <p className="mt-2 text-xs text-gray-muted/60 hidden md:block">
+              Use arrow keys to navigate &bull; ESC to close
+            </p>
           </div>
         </div>
       )}
