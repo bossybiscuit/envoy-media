@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { X, ChevronLeft, ChevronRight, Eye, Images } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Eye, Images, PlayCircle } from "lucide-react";
 import {
   FloatingShapes,
   SectionDivider,
@@ -31,16 +31,25 @@ interface Project {
   thumbnail: string;
   type: "gallery" | "photo" | "video";
   photoCount?: number;
+  videoUrl?: string;
 }
 
 const projects: Project[] = [
   {
-    id: "bimini",
+    id: "bimini-gallery",
     title: "Bimini Bay Resort",
-    category: "Vacation Rental",
+    category: "Photo Gallery",
     thumbnail: "/images/portfolio/bimini-gallery/DSC00234.jpg",
     type: "gallery",
     photoCount: 13,
+  },
+  {
+    id: "bimini-video",
+    title: "Bimini Bay Resort",
+    category: "Property Tour",
+    thumbnail: "/images/portfolio/bimini-gallery/DSC00269.jpg",
+    type: "video",
+    videoUrl: "/videos/Jalen-Bimini-horizontal.mp4",
   },
   {
     id: "connerton",
@@ -55,10 +64,12 @@ export default function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeGallery, setActiveGallery] = useState<typeof biminiGallery | null>(null);
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
   const { ref, isVisible } = useScrollAnimation();
 
   const openProject = (project: Project) => {
-    if (project.type === "gallery" && project.id === "bimini") {
+    if (project.type === "gallery" && project.id === "bimini-gallery") {
       setActiveGallery(biminiGallery);
       setCurrentImageIndex(0);
       setLightboxOpen(true);
@@ -67,9 +78,16 @@ export default function Portfolio() {
       setActiveGallery([{ src: project.thumbnail, alt: project.title }]);
       setCurrentImageIndex(0);
       setLightboxOpen(true);
+    } else if (project.type === "video" && project.videoUrl) {
+      setActiveVideoUrl(project.videoUrl);
+      setVideoModalOpen(true);
     }
-    // Future video type can open a video modal
   };
+
+  const closeVideoModal = useCallback(() => {
+    setVideoModalOpen(false);
+    setActiveVideoUrl(null);
+  }, []);
 
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
@@ -90,7 +108,7 @@ export default function Portfolio() {
     );
   }, [activeGallery]);
 
-  // Keyboard navigation
+  // Keyboard navigation for lightbox
   useEffect(() => {
     if (!lightboxOpen) return;
 
@@ -116,6 +134,25 @@ export default function Portfolio() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [lightboxOpen, closeLightbox, goToPrevious, goToNext]);
+
+  // Keyboard navigation for video modal
+  useEffect(() => {
+    if (!videoModalOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeVideoModal();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [videoModalOpen, closeVideoModal]);
 
   const currentImage = activeGallery?.[currentImageIndex];
 
@@ -179,6 +216,15 @@ export default function Portfolio() {
                   </p>
                 )}
               </div>
+
+              {/* Play button for video cards */}
+              {project.type === "video" && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="rounded-full bg-navy-deep/60 p-2 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                    <PlayCircle className="h-12 w-12 text-white" />
+                  </div>
+                </div>
+              )}
 
               {/* View indicator on hover */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -257,6 +303,42 @@ export default function Portfolio() {
               Use arrow keys to navigate &bull; ESC to close
             </p>
           </div>
+        </div>
+      )}
+
+      {/* Video Modal */}
+      {videoModalOpen && activeVideoUrl && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-navy-deep/95 backdrop-blur-md"
+          onClick={closeVideoModal}
+        >
+          {/* Close button */}
+          <button
+            onClick={closeVideoModal}
+            className="absolute right-4 top-4 z-20 rounded-full bg-blue-coastal p-3 text-white shadow-lg shadow-blue-coastal/30 transition-all duration-300 hover:scale-110 hover:bg-blue-coastal-hover md:right-6 md:top-6"
+          >
+            <X className="h-6 w-6" />
+          </button>
+
+          {/* Video container */}
+          <div
+            className="relative w-full max-w-[90vw] max-h-[90vh] aspect-video"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              src={activeVideoUrl}
+              controls
+              autoPlay
+              className="w-full h-full rounded-lg shadow-2xl"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          {/* Keyboard hint */}
+          <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs text-gray-muted/60 hidden md:block">
+            Press ESC to close
+          </p>
         </div>
       )}
     </section>

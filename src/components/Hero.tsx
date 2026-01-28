@@ -23,11 +23,12 @@ export default function Hero() {
           muted
           playsInline
           className="h-full w-full object-cover"
+          src="/videos/hero-video-b&w.mp4"
         >
-          <source src="/public/videos/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
-        {/* Blue-tinted overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-deep/80 via-navy-deep/70 to-blue-coastal/10" />
+        {/* Blue-tinted overlay for B&W video */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-deep/85 via-navy-deep/75 to-blue-coastal/20" />
       </div>
 
       {/* Decorative Elements */}
