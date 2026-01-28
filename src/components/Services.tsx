@@ -9,7 +9,6 @@ import {
 import {
   FloatingShapes,
   DottedGrid,
-  IconWatermark,
   SectionDivider,
   useScrollAnimation,
 } from "./Decorative";
@@ -63,7 +62,6 @@ export default function Services() {
     >
       <DottedGrid />
       <FloatingShapes />
-      <IconWatermark icon={1} position="top-right" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         <div

@@ -3,7 +3,6 @@ import { Button } from "./Button";
 import {
   FloatingShapes,
   DottedGrid,
-  IconWatermark,
   SectionDivider,
   useScrollAnimation,
 } from "./Decorative";
@@ -100,7 +99,6 @@ export default function Packages() {
     >
       <DottedGrid />
       <FloatingShapes />
-      <IconWatermark icon={3} position="center-left" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         <div

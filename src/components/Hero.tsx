@@ -1,6 +1,6 @@
 import { Button } from "./Button";
 import { MapPin, ArrowRight } from "lucide-react";
-import { FloatingShapes, IconWatermark } from "./Decorative";
+import { FloatingShapes } from "./Decorative";
 
 const SPIRO_ORDER_URL =
   "https://portal.spiro.media/order/envoy/envoy-media-new-order-page";
@@ -32,7 +32,6 @@ export default function Hero() {
 
       {/* Decorative Elements */}
       <FloatingShapes variant="hero" />
-      <IconWatermark icon={0} position="bottom-right" />
 
       {/* Corner Accents */}
       <div className="pointer-events-none absolute inset-0 z-10">

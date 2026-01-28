@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import {
   FloatingShapes,
-  IconWatermark,
   SectionDivider,
   useScrollAnimation,
 } from "./Decorative";
@@ -58,7 +57,6 @@ export default function WhyChooseUs() {
   return (
     <section className="relative overflow-hidden border-t border-surface-dark bg-navy-deep py-20 md:py-24">
       <FloatingShapes />
-      <IconWatermark icon={0} position="top-left" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         <div

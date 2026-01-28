@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { X, ChevronLeft, ChevronRight, Eye, Camera, Images } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Eye, Images } from "lucide-react";
 import {
   FloatingShapes,
-  IconWatermark,
   SectionDivider,
   useScrollAnimation,
 } from "./Decorative";
@@ -30,9 +29,8 @@ interface Project {
   title: string;
   category: string;
   thumbnail: string;
+  type: "gallery" | "photo" | "video";
   photoCount?: number;
-  hasGallery: boolean;
-  comingSoon?: boolean;
 }
 
 const projects: Project[] = [
@@ -41,47 +39,15 @@ const projects: Project[] = [
     title: "Bimini Bay Resort",
     category: "Vacation Rental",
     thumbnail: "/images/portfolio/bimini-gallery/DSC00234.jpg",
+    type: "gallery",
     photoCount: 13,
-    hasGallery: true,
   },
   {
     id: "connerton",
     title: "Connerton Home",
     category: "Residential",
     thumbnail: "/images/portfolio/connerton-1.jpg",
-    hasGallery: false,
-  },
-  {
-    id: "placeholder-1",
-    title: "Luxury Waterfront",
-    category: "Residential",
-    thumbnail: "/images/portfolio/bimini-gallery/DSC00269.jpg",
-    hasGallery: false,
-    comingSoon: true,
-  },
-  {
-    id: "placeholder-2",
-    title: "Downtown Condo",
-    category: "Residential",
-    thumbnail: "/images/portfolio/bimini-gallery/DSC00279.jpg",
-    hasGallery: false,
-    comingSoon: true,
-  },
-  {
-    id: "placeholder-3",
-    title: "Beach House Rental",
-    category: "Vacation Rental",
-    thumbnail: "/images/portfolio/bimini-gallery/DSC00284.jpg",
-    hasGallery: false,
-    comingSoon: true,
-  },
-  {
-    id: "placeholder-4",
-    title: "Modern Estate",
-    category: "Luxury",
-    thumbnail: "/images/portfolio/bimini-gallery/DSC00294.jpg",
-    hasGallery: false,
-    comingSoon: true,
+    type: "photo",
   },
 ];
 
@@ -91,13 +57,18 @@ export default function Portfolio() {
   const [activeGallery, setActiveGallery] = useState<typeof biminiGallery | null>(null);
   const { ref, isVisible } = useScrollAnimation();
 
-  const openGallery = (projectId: string) => {
-    if (projectId === "bimini") {
+  const openProject = (project: Project) => {
+    if (project.type === "gallery" && project.id === "bimini") {
       setActiveGallery(biminiGallery);
       setCurrentImageIndex(0);
       setLightboxOpen(true);
+    } else if (project.type === "photo") {
+      // Single photo opens as a one-image gallery
+      setActiveGallery([{ src: project.thumbnail, alt: project.title }]);
+      setCurrentImageIndex(0);
+      setLightboxOpen(true);
     }
-    // Future galleries can be added here
+    // Future video type can open a video modal
   };
 
   const closeLightbox = useCallback(() => {
@@ -154,7 +125,6 @@ export default function Portfolio() {
       className="relative overflow-hidden border-t border-surface-dark bg-navy-deep py-20 md:py-24"
     >
       <FloatingShapes />
-      <IconWatermark icon={2} position="bottom-left" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         {/* Section Header */}
@@ -177,10 +147,8 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              onClick={() => project.hasGallery && openGallery(project.id)}
-              className={`group relative aspect-[4/3] overflow-hidden rounded-lg border border-surface-dark bg-navy-deep card-glow transition-all duration-300 hover:scale-[1.02] ${
-                project.hasGallery ? "cursor-pointer" : ""
-              } ${isVisible ? "scroll-visible" : "scroll-hidden"}`}
+              onClick={() => openProject(project)}
+              className={`group relative aspect-[4/3] overflow-hidden rounded-lg border border-surface-dark bg-navy-deep card-glow transition-all duration-300 hover:scale-[1.02] cursor-pointer ${isVisible ? "scroll-visible" : "scroll-hidden"}`}
               style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
             >
               <img
@@ -212,25 +180,15 @@ export default function Portfolio() {
                 )}
               </div>
 
-              {/* View Gallery indicator for galleries */}
-              {project.hasGallery && (
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <div className="flex items-center gap-2 rounded-full bg-navy-deep/80 px-5 py-2.5 backdrop-blur-sm border border-blue-coastal/30">
-                    <Eye className="h-5 w-5 text-blue-coastal" />
-                    <span className="text-sm font-medium text-text-light">View Gallery</span>
-                  </div>
+              {/* View indicator on hover */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="flex items-center gap-2 rounded-full bg-navy-deep/80 px-5 py-2.5 backdrop-blur-sm border border-blue-coastal/30">
+                  <Eye className="h-5 w-5 text-blue-coastal" />
+                  <span className="text-sm font-medium text-text-light">
+                    {project.type === "gallery" ? "View Gallery" : project.type === "video" ? "Watch Video" : "View Photo"}
+                  </span>
                 </div>
-              )}
-
-              {/* Coming Soon badge */}
-              {project.comingSoon && (
-                <div className="absolute top-4 right-4">
-                  <div className="flex items-center gap-1.5 rounded-full bg-surface-dark/80 px-3 py-1.5 backdrop-blur-sm">
-                    <Camera className="h-3.5 w-3.5 text-gray-muted" />
-                    <span className="text-xs font-medium text-gray-muted">Coming Soon</span>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
           ))}
         </div>

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Home, Building2, Key, MapPin } from "lucide-react";
 
 // ─── Scroll Animation Hook ───────────────────────────────────────────────────
 export function useScrollAnimation(threshold = 0.15) {
@@ -44,27 +43,6 @@ export function FloatingShapes({ variant = "default" }: { variant?: "default" | 
   );
 
   return <div className="pointer-events-none absolute inset-0 overflow-hidden">{shapes}</div>;
-}
-
-// ─── Icon Watermarks ─────────────────────────────────────────────────────────
-const watermarkIcons = [Home, Building2, Key, MapPin];
-
-export function IconWatermark({ icon = 0, position = "top-right" }: { icon?: number; position?: string }) {
-  const Icon = watermarkIcons[icon % watermarkIcons.length];
-  const posClasses: Record<string, string> = {
-    "top-right": "top-10 right-10",
-    "top-left": "top-10 left-10",
-    "bottom-right": "bottom-10 right-10",
-    "bottom-left": "bottom-10 left-10",
-    "center-right": "top-1/2 -translate-y-1/2 right-10",
-    "center-left": "top-1/2 -translate-y-1/2 left-10",
-  };
-
-  return (
-    <div className={`pointer-events-none absolute ${posClasses[position] || posClasses["top-right"]} opacity-[0.03]`}>
-      <Icon className="h-48 w-48 text-blue-coastal md:h-64 md:w-64" strokeWidth={0.5} />
-    </div>
-  );
 }
 
 // ─── Dotted Grid Pattern ─────────────────────────────────────────────────────
