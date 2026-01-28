@@ -328,7 +328,7 @@ export default function Portfolio() {
             <video
               src={activeVideoUrl}
               controls
-              autoPlay
+              playsInline
               className="w-full h-full rounded-lg shadow-2xl"
             >
               Your browser does not support the video tag.

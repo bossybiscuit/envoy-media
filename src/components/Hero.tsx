@@ -23,7 +23,7 @@ export default function Hero() {
           muted
           playsInline
           className="h-full w-full object-cover"
-          src="/videos/hero-video-b&w.mp4"
+          src="/videos/hero-video-bw.mp4"
         >
           Your browser does not support the video tag.
         </video>
