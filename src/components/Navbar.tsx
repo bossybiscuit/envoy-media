@@ -2,31 +2,27 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
 
-// Spiro order page URL
-const SPIRO_ORDER_URL = 'https://portal.spiro.media/order/envoy/envoy-media-new-order-page'
+const SPIRO_ORDER_URL =
+  "https://portal.spiro.media/order/envoy/envoy-media-new-order-page";
 
-interface NavbarProps {
-  // onOpenModal prop no longer needed - linking directly to Spiro
-}
+const navLinks = [
+  { label: "Services", section: "services" },
+  { label: "Work", section: "portfolio" },
+  { label: "Packages", section: "packages" },
+];
 
-export default function Navbar({}: NavbarProps) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
   }, [isMobileMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
@@ -47,7 +43,7 @@ export default function Navbar({}: NavbarProps) {
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "border-b border-envoy-dark-surface/20 bg-envoy-navy/95 shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md"
+            ? "border-b border-surface-dark/50 bg-navy-deep/95 shadow-[0_4px_30px_rgba(0,0,0,0.4)] backdrop-blur-lg"
             : "bg-transparent"
         }`}
       >
@@ -56,7 +52,7 @@ export default function Navbar({}: NavbarProps) {
             {/* Logo */}
             <button
               onClick={scrollToTop}
-              className="font-serif text-2xl font-bold text-white transition-colors hover:text-envoy-blue"
+              className="transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(107,169,219,0.4)]"
             >
               <img
                 src="/images/nav-logo.png"
@@ -65,59 +61,48 @@ export default function Navbar({}: NavbarProps) {
               />
             </button>
 
-            {/* Desktop Navigation Links & CTA */}
-            <div className="hidden items-center space-x-8 md:flex">
-              <button
-                onClick={() => scrollToSection("services")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-blue"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => scrollToSection("portfolio")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-blue"
-              >
-                Work
-              </button>
-              <button
-                onClick={() => scrollToSection("packages")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-blue"
-              >
-                Packages
-              </button>
+            {/* Desktop Navigation */}
+            <div className="hidden items-center md:flex">
+              {navLinks.map((link, i) => (
+                <div key={link.section} className="flex items-center">
+                  {i > 0 && (
+                    <span className="mx-4 h-1 w-1 rounded-full bg-blue-coastal/30" />
+                  )}
+                  <button
+                    onClick={() => scrollToSection(link.section)}
+                    className="nav-link font-sans text-sm font-medium text-text-light/80 transition-colors hover:text-blue-coastal"
+                  >
+                    {link.label}
+                  </button>
+                </div>
+              ))}
 
-              {/* <button
-                onClick={() => scrollToSection("testimonials")}
-                className="font-sans text-envoy-text transition-colors hover:text-envoy-green"
-              >
-                Testimonials
-              </button> */}
-
-              {/* Client Portal Button */}
-              <Button
-                onClick={() => window.location.href = "#"}
-                variant="outline"
-                size="default"
-                className="font-semibold"
-              >
-                Client Portal
-              </Button>
-
-              {/* CTA Button - Links to Spiro order page */}
-              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
+              <div className="ml-8 flex items-center gap-3">
                 <Button
+                  onClick={() => (window.location.href = "#")}
+                  variant="outline"
                   size="default"
                   className="font-semibold"
                 >
-                  Book a Shoot
+                  Client Portal
                 </Button>
-              </a>
+
+                <a
+                  href={SPIRO_ORDER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="default" className="font-semibold">
+                    Book a Shoot
+                  </Button>
+                </a>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-envoy-text transition-colors hover:text-envoy-blue"
+              className="md:hidden text-text-light transition-colors hover:text-blue-coastal"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -132,41 +117,22 @@ export default function Navbar({}: NavbarProps) {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-envoy-navy/95 backdrop-blur-md"
+            className="absolute inset-0 bg-navy-deep/95 backdrop-blur-lg"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-
-          {/* Menu Content */}
           <div className="relative flex h-full flex-col items-center justify-center space-y-8 px-6">
-            <button
-              onClick={() => scrollToSection("services")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => scrollToSection("portfolio")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
-            >
-              Work
-            </button>
-            <button
-              onClick={() => scrollToSection("packages")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
-            >
-              Packages
-            </button>
-            <button
-              onClick={() => scrollToSection("testimonials")}
-              className="font-sans text-2xl text-envoy-text transition-colors hover:text-envoy-blue"
-            >
-              Testimonials
-            </button>
+            {navLinks.map((link) => (
+              <button
+                key={link.section}
+                onClick={() => scrollToSection(link.section)}
+                className="nav-link font-sans text-2xl font-medium text-text-light transition-colors hover:text-blue-coastal"
+              >
+                {link.label}
+              </button>
+            ))}
 
-            {/* Mobile CTA Buttons */}
-            <div className="pt-8 flex flex-col gap-4">
+            <div className="pt-8 flex flex-col gap-4 w-full max-w-xs">
               <Button
                 onClick={() => {
                   window.location.href = "#";
@@ -174,11 +140,15 @@ export default function Navbar({}: NavbarProps) {
                 }}
                 variant="outline"
                 size="xl"
-                className="font-semibold"
+                className="font-semibold w-full"
               >
                 Client Portal
               </Button>
-              <a href={SPIRO_ORDER_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                href={SPIRO_ORDER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   onClick={() => setIsMobileMenuOpen(false)}
                   size="xl"
