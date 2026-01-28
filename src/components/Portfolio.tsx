@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Eye, Camera, Images } from "lucide-react";
 import {
   FloatingShapes,
   IconWatermark,
@@ -24,31 +24,100 @@ const biminiGallery = [
   { src: "/images/portfolio/bimini-gallery/DSC00304.jpg", alt: "Bimini Bay Resort 13" },
 ];
 
+// Project cards for the Work grid
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  thumbnail: string;
+  photoCount?: number;
+  hasGallery: boolean;
+  comingSoon?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    id: "bimini",
+    title: "Bimini Bay Resort",
+    category: "Vacation Rental",
+    thumbnail: "/images/portfolio/bimini-gallery/DSC00234.jpg",
+    photoCount: 13,
+    hasGallery: true,
+  },
+  {
+    id: "connerton",
+    title: "Connerton Home",
+    category: "Residential",
+    thumbnail: "/images/portfolio/connerton-1.jpg",
+    hasGallery: false,
+  },
+  {
+    id: "placeholder-1",
+    title: "Luxury Waterfront",
+    category: "Residential",
+    thumbnail: "/images/portfolio/bimini-gallery/DSC00269.jpg",
+    hasGallery: false,
+    comingSoon: true,
+  },
+  {
+    id: "placeholder-2",
+    title: "Downtown Condo",
+    category: "Residential",
+    thumbnail: "/images/portfolio/bimini-gallery/DSC00279.jpg",
+    hasGallery: false,
+    comingSoon: true,
+  },
+  {
+    id: "placeholder-3",
+    title: "Beach House Rental",
+    category: "Vacation Rental",
+    thumbnail: "/images/portfolio/bimini-gallery/DSC00284.jpg",
+    hasGallery: false,
+    comingSoon: true,
+  },
+  {
+    id: "placeholder-4",
+    title: "Modern Estate",
+    category: "Luxury",
+    thumbnail: "/images/portfolio/bimini-gallery/DSC00294.jpg",
+    hasGallery: false,
+    comingSoon: true,
+  },
+];
+
 export default function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeGallery, setActiveGallery] = useState<typeof biminiGallery | null>(null);
   const { ref, isVisible } = useScrollAnimation();
 
-  const openLightbox = (index: number) => {
-    setCurrentImageIndex(index);
-    setLightboxOpen(true);
+  const openGallery = (projectId: string) => {
+    if (projectId === "bimini") {
+      setActiveGallery(biminiGallery);
+      setCurrentImageIndex(0);
+      setLightboxOpen(true);
+    }
+    // Future galleries can be added here
   };
 
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
+    setActiveGallery(null);
   }, []);
 
   const goToPrevious = useCallback(() => {
+    if (!activeGallery) return;
     setCurrentImageIndex((prev) =>
-      prev === 0 ? biminiGallery.length - 1 : prev - 1
+      prev === 0 ? activeGallery.length - 1 : prev - 1
     );
-  }, []);
+  }, [activeGallery]);
 
   const goToNext = useCallback(() => {
+    if (!activeGallery) return;
     setCurrentImageIndex((prev) =>
-      prev === biminiGallery.length - 1 ? 0 : prev + 1
+      prev === activeGallery.length - 1 ? 0 : prev + 1
     );
-  }, []);
+  }, [activeGallery]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -68,7 +137,6 @@ export default function Portfolio() {
       }
     };
 
-    // Prevent body scroll when lightbox is open
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
@@ -78,7 +146,7 @@ export default function Portfolio() {
     };
   }, [lightboxOpen, closeLightbox, goToPrevious, goToNext]);
 
-  const currentImage = biminiGallery[currentImageIndex];
+  const currentImage = activeGallery?.[currentImageIndex];
 
   return (
     <section
@@ -104,25 +172,20 @@ export default function Portfolio() {
 
         <SectionDivider />
 
-        {/* Project Title */}
-        <div className="mt-8 mb-8 text-center">
-          <h3 className="text-2xl font-semibold text-text-light lg:text-3xl">
-            Bimini Bay Resort
-          </h3>
-          <p className="mt-2 text-gray-muted">Vacation Rental Photography</p>
-        </div>
-
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {biminiGallery.map((image, index) => (
+        {/* Projects Grid */}
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
             <div
-              key={index}
-              onClick={() => openLightbox(index)}
-              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-surface-dark bg-navy-deep card-glow transition-all duration-300 hover:scale-[1.03]"
+              key={project.id}
+              onClick={() => project.hasGallery && openGallery(project.id)}
+              className={`group relative aspect-[4/3] overflow-hidden rounded-lg border border-surface-dark bg-navy-deep card-glow transition-all duration-300 hover:scale-[1.02] ${
+                project.hasGallery ? "cursor-pointer" : ""
+              } ${isVisible ? "scroll-visible" : "scroll-hidden"}`}
+              style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
             >
               <img
-                src={image.src}
-                alt={image.alt}
+                src={project.thumbnail}
+                alt={project.title}
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -130,25 +193,51 @@ export default function Portfolio() {
               {/* Blue overlay on hover */}
               <div className="absolute inset-0 bg-blue-coastal/0 transition-all duration-300 group-hover:bg-blue-coastal/20" />
 
-              {/* View indicator */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="flex items-center gap-2 rounded-full bg-navy-deep/80 px-4 py-2 backdrop-blur-sm">
-                  <Eye className="h-5 w-5 text-blue-coastal" />
-                  <span className="text-sm font-medium text-text-light">View</span>
-                </div>
+              {/* Gradient overlay for text */}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent opacity-80" />
+
+              {/* Project info */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <p className="text-sm font-medium text-blue-coastal mb-1">
+                  {project.category}
+                </p>
+                <h3 className="text-xl font-semibold text-text-light">
+                  {project.title}
+                </h3>
+                {project.photoCount && (
+                  <p className="mt-1 text-sm text-gray-muted flex items-center gap-1">
+                    <Images className="h-4 w-4" />
+                    {project.photoCount} photos
+                  </p>
+                )}
               </div>
+
+              {/* View Gallery indicator for galleries */}
+              {project.hasGallery && (
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="flex items-center gap-2 rounded-full bg-navy-deep/80 px-5 py-2.5 backdrop-blur-sm border border-blue-coastal/30">
+                    <Eye className="h-5 w-5 text-blue-coastal" />
+                    <span className="text-sm font-medium text-text-light">View Gallery</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Coming Soon badge */}
+              {project.comingSoon && (
+                <div className="absolute top-4 right-4">
+                  <div className="flex items-center gap-1.5 rounded-full bg-surface-dark/80 px-3 py-1.5 backdrop-blur-sm">
+                    <Camera className="h-3.5 w-3.5 text-gray-muted" />
+                    <span className="text-xs font-medium text-gray-muted">Coming Soon</span>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
-
-        {/* Image count */}
-        <p className="mt-6 text-center text-sm text-gray-muted">
-          {biminiGallery.length} photos &bull; Click to view gallery
-        </p>
       </div>
 
       {/* Lightbox */}
-      {lightboxOpen && currentImage && (
+      {lightboxOpen && currentImage && activeGallery && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-navy-deep/95 backdrop-blur-md"
           onClick={closeLightbox}
@@ -201,7 +290,7 @@ export default function Portfolio() {
               </span>
               <span className="text-gray-muted">/</span>
               <span className="text-lg text-gray-muted">
-                {biminiGallery.length}
+                {activeGallery.length}
               </span>
             </div>
 
